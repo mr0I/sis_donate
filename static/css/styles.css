@@ -1,0 +1,286 @@
+#payPingDonate_MainForm{
+    width: auto !important;
+}
+#payPingDonate_Form{
+    width: 100% !important;
+    display: flex;
+    padding: 10px 2%;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    background-color: #fff;
+}
+.payPingDonate_FormTitle{
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 3px;
+}
+.payPingDonate_FormTitle h4{
+    margin: 0;
+    font-size: 150% !important;
+}
+.payPingDonate_FormTitle span{
+    color: forestgreen;
+    font-weight: bold;
+}
+
+.same_user_msg{
+    font-size: 100%;
+    vertical-align: middle;
+    height: 100%;
+    border-radius: 0;
+    font-weight: lighter;
+}
+.same_user_msg>a{
+    font-weight: bold;
+}
+
+#payPingDonate_Message {
+    border-right: 2px solid forestgreen !important;
+    background-color: #eee !important;
+    color: forestgreen !important;
+    text-align: center !important;
+    margin: 24px auto !important;
+    line-height: 3 !important;
+    font-size: 125% !important;
+    font-family: vazir, sans-serif, Arial, Helvetica !important;
+}
+#payPingDonate_Error {
+    text-align: center !important;
+    line-height: 2 !important;
+    font-family: vazir, sans-serif, Arial, Helvetica !important;
+    font-size: 115% !important;
+}
+#add_donate_frm{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    width: 100% !important;
+    padding: 24px 8px !important;
+    background-color: #ffffff;
+    margin: 13px auto;
+    border-radius: 3px;
+}
+#add_donate_frm input[type="text"]{
+    color: #424242 !important;
+}
+#add_donate_frm input::placeholder{
+    color: #bdbdbd;
+}
+#add_donate_frm input ,#add_donate_frm select ,#add_donate_frm option {
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+.payPingDonate_FormItem {
+    width: 100% !important;
+    margin-top: 0 !important;
+}
+.payPingDonate_FormItem.required label::after{
+    content: "(الزامی)";
+    color: red;
+    vertical-align: top;
+    margin: 0 5px;
+    font-size: 75%;
+}
+.payPingDonate_ItemInput {
+    width: 100% !important;
+}
+.payPingDonate_ItemInput input {
+    box-shadow: none !important;
+    width: 100% !important;
+}
+
+.payPingDonate_Submit{
+    margin-right:0 !important;
+    width:100% !important;
+    background-color: #00C851 !important;
+    color: #eee !important;
+    border-radius: 0 !important;
+    padding: 8px 16px !important;
+    font-family: vazir, sans-serif, Arial, Helvetica !important;
+    text-align: center !important;
+}
+.payPingDonate_Submit:disabled{
+    cursor: not-allowed;
+}
+
+.payPingDonate_FormLabel {
+    width: 100% !important;
+    padding:  0 !important;
+}
+
+input[name="payPingDonate_Amount"]{
+    display:none;
+    margin: 8px auto;
+}
+#payPingDonate_Amount_Select{
+    border: 1px solid #e0e0e0 !important;
+    border-radius: 3px !important;
+    color: #424242;
+}
+
+/* start ShowDonatesListPage */
+.donatesList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    padding: 0 24px;
+}
+.donatesList .donatesItem{
+    padding: 0;
+    margin:13px;
+    border-radius: 3px;
+    border-color: #fff;
+    box-shadow: 0 0 3px #e0e0e0;
+}
+.donatesList .donatesItem .card-body {
+    padding: 0 13px;
+}
+.donatesList .donatesItem .card-name{
+    text-align: center;
+    font-size: 115%;
+    color: #424242;
+}
+.donatesList .donatesItem .card-price{
+    text-align: center;
+    color: #e5490a;
+    font-weight: bold;
+    font-size: 125%;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+
+.donatesList .donatesItem .card-footer{
+    padding: 0 5px !important;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+    background-color: #fafafa;
+    border-top: none;
+}
+.donatesList .donatesItem .card-footer .card-date{
+    text-align: center;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+.donatesList .donatesItem .card-footer p{
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 115%;
+}
+.donatesList .donatesItem .card-footer p img{
+    width: 20px;
+    height: auto;
+    border-radius: 50px;
+}
+.donatesList .donatesItem figure{
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+}
+.donatesList .donatesItem figure img{
+    width: 55px;
+    height: auto;
+    border-radius: 50px;
+    border: 1px solid #e0e0e0;
+}
+
+.donate_title {
+    text-align: center;
+    margin: 24px auto;
+}
+.donate_title p{
+    text-align: center !important;
+    padding: 0;
+    margin: 0;
+}
+
+.donateListContainer{
+    background-color: #fff;
+    padding: 24px 0;
+}
+.donateListContainer .btn-group {
+    margin-top: 24px;
+}
+.donateListContainer .btn-group a{
+    background-color: transparent;
+    color: #e5490a;
+    padding: 5px 24px;
+    border: 1px solid #e5490a;
+}
+.donateListContainer .btn-group a.active{
+    background-color: #e5490a;
+    color: #EEEEEE;
+}
+
+#authors_list_table td ,#authors_list_table th{
+    text-align: center;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+
+#authors_list_table thead > tr {
+    background-color: #e5490a;
+}
+#authors_list_table thead > tr th {
+    color: #e0e0e0;
+}
+
+.paginate_btns {
+    margin: 13px auto;
+}
+.paginate_btns a{
+    padding: 3px 10px;
+    color: #e5490a;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 100%;
+    margin: 3px;
+    border-radius: 50px;
+    border: 1px solid #e5490a;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+.paginate_btns a:hover , .paginate_btns a.active{
+    color: #EEEEEE;
+    background-color: #e5490a;
+}
+.sort_btns {
+    padding: 8px 0;
+}
+.sort_btns a{
+    font-weight: normal;
+    font-size: 100%;
+    color: blue;
+    font-family: vazir, sans-serif, Arial, Helvetica;
+}
+.sort_btns a.current{
+    font-weight: bold;
+    color: #212121;
+}
+.authors_donates_container {
+    background: #fff;
+    padding: 50px 15px;
+}
+.authors_donates_container #authors_donates_title{
+    width: 100%;
+    text-align: center;
+    font-size: 150%;
+    margin: 15px auto;
+}
+
+/* end ShowDonatesListPage */
+
+
+@media screen and (max-width: 768px){
+    #payPingDonate_Form{
+        flex-direction: column-reverse;
+    }
+}

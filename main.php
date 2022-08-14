@@ -12,6 +12,7 @@ defined('ABSPATH') or die('Access denied!');
 
 // define constants
 define('ROOT_DIR', plugin_dir_url(__FILE__));
+define('ROOT_PATH', plugin_dir_path(__FILE__));
 define('ADMIN_CSS', plugin_dir_url(__FILE__) . 'admin/css/');
 define('ADMIN_JS', plugin_dir_url(__FILE__) . 'admin/js/');
 define('ADMIN_DIR', plugin_dir_path(__FILE__) . 'admin/');

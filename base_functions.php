@@ -35,26 +35,26 @@ function sisoog_donate_activate_function()
   dbDelta($mainTable);
   dbDelta($merchantidsTable);
   // other options
-  add_option("payPingDonate_TotalAmount", 0, '', 'yes');
-  add_option("payPingDonate_TotalPayment", 0, '', 'yes');
-  add_option("payPingDonate_IsOK", 'با تشکر پرداخت شما به درستی انجام شد.', '', 'yes');
-  add_option("payPingDonate_IsError", 'متاسفانه پرداخت انجام نشد.', '', 'yes');
+  add_option("sisoogDonate_TotalAmount", 0, '', 'yes');
+  add_option("sisoogDonate_TotalPayment", 0, '', 'yes');
+  add_option("sisoogDonate_IsOK", 'با تشکر پرداخت شما به درستی انجام شد.', '', 'yes');
+  add_option("sisoogDonate_IsError", 'متاسفانه پرداخت انجام نشد.', '', 'yes');
 
-  $style = '#payPingDonate_MainForm {
+  $style = '#sisoogDonate_MainForm {
   width: 400px;
   height: auto;
   margin: 0 auto;
   direction: rtl;$
 }
 
-#payPingDonate_Form {
+#sisoogDonate_Form {
   width: 96%;
   height: auto;
   float: right;
   padding: 10px 2%;
 }
 
-#payPingDonate_Message,#payPingDonate_Error {
+#sisoogDonate_Message,#sisoogDonate_Error {
   width: 90%;
   margin-top: 10px;
   margin-right: 2%;
@@ -65,13 +65,13 @@ function sisoog_donate_activate_function()
   color: #00581f;
 }
 
-#payPingDonate_Error {
+#sisoogDonate_Error {
   border-right: 2px solid #790000;
   background-color: #ffc9c5;
   color: #580a00;
 }
 
-.payPingDonate_FormItem {
+.sisoogDonate_FormItem {
   width: 90%;
   margin-top: 10px;
   margin-right: 2%;
@@ -79,18 +79,18 @@ function sisoog_donate_activate_function()
   padding: 5px 2%;
 }
 
-.payPingDonate_FormLabel {
+.sisoogDonate_FormLabel {
   width: 35%;
   float: right;
   padding: 3px 0;
 }
 
-.payPingDonate_ItemInput {
+.sisoogDonate_ItemInput {
   width: 64%;
   float: left;
 }
 
-.payPingDonate_ItemInput input {
+.sisoogDonate_ItemInput input {
   width: 90%;
   float: right;
   border-radius: 3px;
@@ -101,15 +101,15 @@ function sisoog_donate_activate_function()
   padding: 3px 5px;
 }
 
-.payPingDonate_ItemInput input:focus {
+.sisoogDonate_ItemInput input:focus {
   box-shadow: 0 0 4px #0099d1;
 }
 
-.payPingDonate_ItemInput input.error {
+.sisoogDonate_ItemInput input.error {
   box-shadow: 0 0 4px #ef0d1e;
 }
 
-input.payPingDonate_Submit {
+input.sisoogDonate_Submit {
   background: none repeat scroll 0 0 #2ea2cc;
   border-color: #0074a2;
   box-shadow: 0 1px 0 rgba(120, 200, 230, 0.5) inset, 0 1px 0 rgba(0, 0, 0, 0.15);
@@ -131,8 +131,8 @@ input.payPingDonate_Submit {
   float: right;
   margin-right: 24%;
 }';
-  add_option("payPingDonate_CustomStyle", $style, '', 'yes');
-  add_option("payPingDonate_UseCustomStyle", 'false', '', 'yes');
+  add_option("sisoogDonate_CustomStyle", $style, '', 'yes');
+  add_option("sisoogDonate_UseCustomStyle", 'false', '', 'yes');
 }
 
 function sisoog_donate_deactivate_function()
