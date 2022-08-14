@@ -15,6 +15,7 @@ define('ROOT_DIR', plugin_dir_url(__FILE__));
 define('ADMIN_CSS', plugin_dir_url(__FILE__) . 'admin/css/');
 define('ADMIN_JS', plugin_dir_url(__FILE__) . 'admin/js/');
 define('ADMIN_DIR', plugin_dir_path(__FILE__) . 'admin/');
+define('INC_DIR', plugin_dir_path(__FILE__) . 'inc/');
 define('SITE_CSS', plugin_dir_url(__FILE__) . 'static/css/');
 define('SITE_JS', plugin_dir_url(__FILE__) . 'static/js/');
 define('ASSETSDIR', plugin_dir_url(__FILE__) . 'static/');
@@ -37,6 +38,23 @@ add_action( 'wp_enqueue_scripts', function(){
   wp_enqueue_style( 'sisoog_donate_styles', SITE_CSS . 'styles.css');
   wp_enqueue_script('sisoog_donate_scripts', SITE_JS.'scripts.js' , array('jquery'));
 });
+
+
+// add menus
+if ( is_admin() )
+{
+  include(ADMIN_DIR . 'admin_proccess.php');
+  include(ADMIN_DIR . 'ajax_requests.php');
+}
+
+// base functions
+include(INC_DIR . 'shortcode.php');
+include(plugin_dir_path(__FILE__). 'base_functions.php' );
+register_activation_hook( __FILE__, 'sisoog_donate_activate_function');
+register_deactivation_hook( __FILE__, 'sisoog_donate_deactivate_function');
+
+
+
 
 
 
