@@ -32,12 +32,18 @@ add_action ('admin_enqueue_scripts', function(){
   wp_enqueue_script('admin-scripts', ADMIN_JS.'admin-scripts.js' , array('jquery'));
   wp_localize_script( 'admin-scripts', 'SISOOGDONATEADMINAJAX', array(
 	  'ajaxurl' => admin_url( 'admin-ajax.php' ),
-	  'security' => wp_create_nonce( 'Ny3nIq4Tq8o6' )
+	  'security' => wp_create_nonce( 'Ny3nIq4Tq8o6' ),
+	  'request_timeout' => 30000,
   ));
 });
 add_action( 'wp_enqueue_scripts', function(){
   wp_enqueue_style( 'sisoog_donate_styles', SITE_CSS . 'styles.css');
   wp_enqueue_script('sisoog_donate_scripts', SITE_JS.'scripts.js' , array('jquery'));
+  wp_localize_script( 'sisoog_donate_scripts', 'SISOOGDONATEADMINAJAX', array(
+	  'ajaxurl' => admin_url( 'admin-ajax.php' ),
+	  'security' => wp_create_nonce( 'Ny3nIq4Tq8o6' ),
+	  'request_timeout' => 30000,
+  ));
 });
 
 
