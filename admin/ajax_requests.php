@@ -15,11 +15,11 @@ function addDonateFrm_callback()
   // inits
   $configs = include_once(ROOT_PATH. 'config.php');
   include_once(INC_DIR . 'functions.php');
-  $out = '';
+ // $out = '';
   $error = '';
-  $message = '';
-  $sisoogDonate_IsOK = get_option( 'sisoogDonate_IsOK');
-  $sisoogDonate_IsError = get_option( 'sisoogDonate_IsError');
+//  $message = '';
+//  $sisoogDonate_IsOK = get_option( 'sisoogDonate_IsOK');
+//  $sisoogDonate_IsError = get_option( 'sisoogDonate_IsError');
   $sisoogDonate_Unit = get_option( 'sisoogDonate_Unit');
 
   $Name =           filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);  // Required
@@ -30,6 +30,7 @@ function addDonateFrm_callback()
   $AuthorId =       filter_input(INPUT_POST, 'author_id', FILTER_SANITIZE_SPECIAL_CHARS); // Required
   $userName =       filter_input(INPUT_POST, 'user_name' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
   $postId =         filter_input(INPUT_POST, 'post_id' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
+  $donateData =         filter_input(INPUT_POST, 'donate_data' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
   $SendDescription = $Name . ' | ' . $Mobile . ' | ' . $Email . ' | ' . $Description ;
 
 
@@ -42,11 +43,12 @@ function addDonateFrm_callback()
 
 
   global $wpdb;
-  $reqData = getRequest($_GET['donate_data'],$configs['DONATE_KEY']);
-  $user_id = $reqData['user_id'];
+  $reqData = getRequest($donateData,$configs['DONATE_KEY']);
+  $author_id = $reqData['user_id'];
   $ts = $reqData['ts'];
   $currentTime = time();
   //if ($currentTime - $ts > 600) $error .= 'مدت زمان مجاز برای این فرایند سپری شد:(' . "<br>\r\n";
+
 
   $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
   $merchants = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${user_id}' LIMIT 1");
@@ -60,17 +62,14 @@ function addDonateFrm_callback()
 	$gateway_name = get_option( 'sisoogDonate_MerchantIDType');
   }
 
-
-
   $usersTable = $wpdb->prefix . 'users';
   $postsTable = $wpdb->prefix . 'posts';
   $check1 = $wpdb->get_results("SELECT * FROM ${usersTable} WHERE ID = '${AuthorId}' AND display_name='${userName}' LIMIT 1");
   $check2 = $wpdb->get_results("SELECT * FROM ${postsTable} WHERE post_author = '${AuthorId}' AND ID='${postId}' LIMIT 1");
   if(count($check1) === 0 || count($check2) === 0 ) $error .= 'خطا در اعتبارسنجی!' . "<br>\r\n";
 
-
   if($error == '') {
-	$CallbackURL = GetCallBackURL();  // Required
+	$CallbackURL = GetCallBackURL();
 	$CallbackURL = substr($CallbackURL , 0, strpos($CallbackURL,'wp-admin') - 1) . '/donate_landing';
 
 	// get payment gateway
@@ -85,7 +84,9 @@ function addDonateFrm_callback()
 			'Description'   => $Description,
 			'Author'        => $userName,
 			'PostID'        => $postId,
-			'Status'        => 'SEND'
+			'Status'        => 'SEND',
+			'payment_gateway' => 'payping',
+			'author_id' => $author_id,
 		),array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s' ));
 
 		$data = array('payerName'=>$Name, 'Amount' => $SendAmount,'payerIdentity'=> $Mobile , 'returnUrl' => $CallbackURL, 'Description' => $SendDescription , 'clientRefId' => $code  );
@@ -168,6 +169,8 @@ function addDonateFrm_callback()
 			  'Author'   => $userName,
 			  'PostID'        => $postId,
 			  'Status'        => 'SEND',
+			  'payment_gateway' => 'zarinpal',
+			  'author_id' => $author_id,
 		  ),array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ));
 
 		  if ($configs['IS_DEV']) $redirectUrl = 'https://sandbox.zarinpal.com/pg/StartPay/'.$result['Authority'];

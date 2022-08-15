@@ -19,6 +19,8 @@ function sisoog_donate_activate_function()
 					  `Status` varchar(5),
 					  `Author` varchar(55),
 					  `PostID` varchar(20),
+					  `payment_gateway` varchar(20),
+					  `author_id` int(11),
 					  PRIMARY KEY (`DonateID`),
 					  KEY `DonateID` (`DonateID`)
 					) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;";

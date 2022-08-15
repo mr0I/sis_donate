@@ -38,6 +38,7 @@ jQuery(document).ready(function($) {
         const author_id = document.forms['add_donate_frm']['author_id'].value;
         const user_name = document.forms['add_donate_frm']['user_name'].value;
         const post_id = document.forms['add_donate_frm']['post_id'].value;
+        const donate_data = document.forms['add_donate_frm']['donate_data'].value;
 
         const data = {
             action: 'addDonateFrm',
@@ -51,6 +52,7 @@ jQuery(document).ready(function($) {
             'author_id': author_id,
             'user_name': user_name,
             'post_id': post_id,
+            'donate_data': donate_data,
         };
         $.ajax({
             url: SISOOGDONATEADMINAJAX.ajaxurl,

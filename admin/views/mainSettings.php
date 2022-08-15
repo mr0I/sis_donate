@@ -51,7 +51,7 @@ if ( $_POST ) {
 
 
 <h2 id="add-new-user">تنظیمات افزونه حمایت مالی - سیسوگ</h2>
-<h2 id="add-new-user">برای استفاده تنها کافی است کد زیر را درون بخشی از برگه یا نوشته خود قرار دهید  [sisoogDonate]</h2>
+<h2 id="add-new-user">برای استفاده تنها کافی است کد زیر را درون بخشی از برگه یا نوشته خود قرار دهید  [SisoogDonate]</h2>
 <form method="post">
   <table class="form-table">
 	<tbody>
@@ -127,9 +127,9 @@ if ( $_POST ) {
 
         $("#sisoogDonate_UseCustomStyle").change(function(){
             if($(this).prop('checked'))
-                sisoogDonate_CustomStyleBox.slideDown(500);
+                $(sisoogDonate_CustomStyleBox).slideDown(500);
             else
-                sisoogDonate_CustomStyleBox.slideUp(500);
+                $(sisoogDonate_CustomStyleBox).slideUp(500);
         });
     })
 </script>

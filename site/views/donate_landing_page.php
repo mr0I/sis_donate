@@ -2,29 +2,27 @@
 
 
 global $wpdb;
-$configs = include(ROOT_PATH . 'config.php');
-
-//$reqData = getRequest($_GET['donate_data'],$configs['DONATE_KEY']);
-//$user_id = $reqData['user_id'];
-//$display_name = $reqData['user_name'];
-//$pid = $reqData['post_id'];
-
-//$merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-//$merchants = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${user_id}' LIMIT 1");
-//$MerchantID = (sizeof($merchants) !== 0) ? $merchants[0]->merchant_id : '';
-//$gateway_name = $merchants[0]->payment_gateway;
+$configs = include_once(ROOT_PATH . 'config.php');
+include_once(INC_DIR . 'functions.php');
 
 
-wp_die($_GET['clientrefid']);
 
-if (! isset($_GET['Authority'])) {
+$donatesTable = $wpdb->prefix . TABLE_DONATE;
+$merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
+$donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
+$author_id = $donate[0]->author_id;
+$merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
+$MerchantID = $merchant->merchant_id;
+var_dump($MerchantID);
+
+
+if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
   wp_die('خطای دسترسی!');
   return;
 }
+if (isset($_GET['Authority'])) $gateway_name = 'zarinpal';
+else $gateway_name = 'payping';
 
-$authority = $_GET['Authority'];
-$donatesTable = $wpdb->prefix . TABLE_DONATE;
-$donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
 
 switch ($gateway_name) {
   case 'payping':
@@ -122,9 +120,7 @@ switch ($gateway_name) {
 	  require_once( LIBDIR . '/nusoap.php' );
 
 	  $Authority = filter_input(INPUT_GET, 'Authority', FILTER_SANITIZE_SPECIAL_CHARS);
-
 	  if($_GET['Status'] == 'OK'){
-
 		$Record = EZD_GetDonate($Authority);
 		if( $Record  === false)
 		{
@@ -132,11 +128,11 @@ switch ($gateway_name) {
 		}
 		else
 		{
-		  $configs = include(plugin_dir_path(__FILE__) . '/config.php');
+		  //$configs = include(plugin_dir_path(__FILE__) . '/config.php');
 
-//			if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-//			else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-		  $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+			if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+			else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+		 // $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 
 		  $client->soap_defencoding = 'UTF-8';
 		  $result = $client->call('PaymentVerification', array(
@@ -178,3 +174,7 @@ switch ($gateway_name) {
 	}
 	break;
 }
+?>
+
+
+<p><?= $message; ?></p>
