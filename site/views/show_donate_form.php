@@ -11,12 +11,11 @@ $user_id = $reqData['user_id'];
 $display_name = $reqData['user_name'];
 $pid = $reqData['post_id'];
 
-
 $usersTable = $wpdb->prefix . 'users';
 $author = $wpdb->get_results( "SELECT * FROM $usersTable WHERE ID='$user_id' AND display_name='$display_name' ");
 $author_name = (sizeof($author) !== 0) ? get_the_author_meta( 'display_name', $user_id ) : '';
 
-$current_user;
+$current_user = new stdClass();
 if ( is_user_logged_in() ) {
   $current_user = wp_get_current_user();
   $name = $current_user->display_name;
@@ -30,8 +29,6 @@ if($current_user->ID === $user_id){
   $author_posts = $wpdb->get_var( "SELECT COUNT(`id`) FROM $merchantsTable WHERE user_id='$user_id' ");
   $same_user_msg = ($author_posts === '0') ?  '<div class="alert alert-danger same_user_msg mt-3" role="alert">شما هنوز  <a href="'.admin_url().'admin.php?page=payPingDonate_authorsMerchantId" class="alert-link" target="_blank">کد درگاه پرداخت</a> خود را ثبت نکرده اید!</div>' : '';
 }
-
-//wp_die(json_encode($reqData,JSON_PRETTY_PRINT));
 ?>
 
 

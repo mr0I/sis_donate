@@ -11,13 +11,15 @@ add_action('admin_menu', function (){
 	  'dashicons-money-alt' );
 
   add_submenu_page('sisoogdonate_menuItems',
-	  'نمایش حامیان مالی','نمایش حامیان مالی',
+	  'نمایش حامیان مالی',
+	  'نمایش حامیان مالی',
 	  'administrator',
 	  'sisoogDonate_supporters',
 	  function (){include(ADMINVIEWSDIR . 'supporters.php');});
 
   add_submenu_page('sisoogdonate_menuItems',
-	  'ثبت آیدی درگاه پرداخت','ثبت آیدی درگاه پرداخت',
+	  'ثبت آیدی درگاه پرداخت',
+	  'ثبت آیدی درگاه پرداخت',
 	  'edit_posts',
 	  'sisoogDonate_merchantId',
 	  function (){include(ADMINVIEWSDIR .'merchantIds.php');});

@@ -70,22 +70,24 @@ function addDonateFrm_callback()
 
 
   if($error == '') {
-	$code = sisoogDonate_AddDonate(array(
-		'Name'          => $Name,
-		'AmountTomaan'  => $SendAmount,
-		'Mobile'        => $Mobile,
-		'Email'         => $Email,
-		'InputDate'     => current_time( 'mysql' ),
-		'Description'   => $Description,
-		'Author'        => $userName,
-		'PostID'        => $postId,
-		'Status'        => 'SEND'
-	),array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s' ));
 	$CallbackURL = GetCallBackURL();  // Required
+	$CallbackURL = substr($CallbackURL , 0, strpos($CallbackURL,'wp-admin') - 1) . '/donate_landing';
 
 	// get payment gateway
 	switch ($gateway_name){
 	  case 'payping':
+		$code = payPingDonate_AddDonate(array(
+			'Name'          => $Name,
+			'AmountTomaan'  => $SendAmount,
+			'Mobile'        => $Mobile,
+			'Email'         => $Email,
+			'InputDate'     => current_time( 'mysql' ),
+			'Description'   => $Description,
+			'Author'        => $userName,
+			'PostID'        => $postId,
+			'Status'        => 'SEND'
+		),array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s' ));
+
 		$data = array('payerName'=>$Name, 'Amount' => $SendAmount,'payerIdentity'=> $Mobile , 'returnUrl' => $CallbackURL, 'Description' => $SendDescription , 'clientRefId' => $code  );
 		try {
 		  $curl = curl_init();
@@ -119,7 +121,6 @@ function addDonateFrm_callback()
 
 				echo '<meta http-equiv="refresh" content="0;url='.$url.'"><script>window.location.replace("'.$url.'");</script>';
 				exit;
-
 			  } else {
 				$error .= ' تراکنش ناموفق بود- شرح خطا : عدم وجود کد ارجاع '. "<br>\r\n";
 			  }
@@ -135,11 +136,9 @@ function addDonateFrm_callback()
 		break;
 	  case 'zarinpal':
 		require_once( LIBDIR . '/nusoap.php' );
-		//$configs = include_once(ROOT_PATH. 'config.php');
 
 		if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-		//$client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 
 		$client->soap_defencoding = 'UTF-8';
 		$result = $client->call('PaymentRequest', array(
@@ -153,7 +152,6 @@ function addDonateFrm_callback()
 				)
 			)
 		);
-
 
 		//Redirect to URL You can do it also by creating a form
 		if($result['Status'] == 100)
@@ -172,16 +170,12 @@ function addDonateFrm_callback()
 			  'Status'        => 'SEND',
 		  ),array( '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s' ));
 
-//			if ($configs['IS_DEV']) $Location = 'https://sandbox.zarinpal.com/pg/StartPay/'.$result['Authority'];
-//			else $Location = 'https://www.zarinpal.com/pg/StartPay/'.$result['Authority'];
-		  $redirectUrl = 'https://www.zarinpal.com/pg/StartPay/'.$result['Authority'];
-
+		  if ($configs['IS_DEV']) $redirectUrl = 'https://sandbox.zarinpal.com/pg/StartPay/'.$result['Authority'];
+		  else $redirectUrl = 'https://www.zarinpal.com/pg/StartPay/'.$result['Authority'];
 
 		  $data=array( 'success' => true ,'redirect_url' => $redirectUrl );
 		  echo json_encode($data);
 		  exit();
-
-
 		  //return "<script>document.location = '${Location}'</script><center>در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید <a href='${Location}'>اینجا</a> را کلیک کنید.</center>";
 		}
 		else

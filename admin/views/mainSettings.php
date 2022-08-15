@@ -27,6 +27,10 @@ if ( $_POST ) {
 	update_option( 'sisoogDonate_LoginUrl', $_POST['sisoogDonate_LoginUrl'] );
   }
 
+  if ( isset($_POST['sisoogDonate_CallbackSlug']) ) {
+	update_option( 'sisoogDonate_CallbackSlug', $_POST['sisoogDonate_CallbackSlug'] );
+  }
+
   if ( isset($_POST['sisoogDonate_UseCustomStyle']) ) {
 	update_option( 'sisoogDonate_UseCustomStyle', 'true' );
 
@@ -98,6 +102,11 @@ if ( $_POST ) {
 	<tr>
 	  <th><label for="sisoogDonate_LoginUrl">لینک صفحه ورود</label></th>
 	  <td><input type="text" class="regular-text" value="<?php echo get_option( 'sisoogDonate_LoginUrl'); ?>" id="sisoogDonate_LoginUrl" name="sisoogDonate_LoginUrl"></td>
+	</tr>
+
+	<tr>
+	  <th><label for="sisoogDonate_CallbackSlug">لینک صفحه کالبک</label></th>
+	  <td><input type="text" class="regular-text" value="<?php echo get_option( 'sisoogDonate_CallbackSlug'); ?>" id="sisoogDonate_CallbackSlug" name="sisoogDonate_CallbackSlug"></td>
 	</tr>
 
 	<tr class="user-display-name-wrap" id="sisoogDonate_CustomStyleBox" <?php if(get_option('sisoogDonate_UseCustomStyle') != 'true') echo 'style="display:none"'; ?>>

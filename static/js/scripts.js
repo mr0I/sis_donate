@@ -61,8 +61,13 @@ jQuery(document).ready(function($) {
                 // $('#regAlert').fadeOut(500);
             },
             success: function (res , xhr) {
-                if (xhr === 'success' && res.success ){
-                    console.log(res);
+                const response = JSON.parse(res);
+                if (xhr === 'success' && response.success ){
+                    alert('در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید');
+
+                    setTimeout(function () {
+                        window.location.href = response.redirect_url;
+                    },1000)
                 }
             },error:function (jqXHR, textStatus, errorThrown) {
                 if(textStatus==='timeout') {
@@ -75,10 +80,6 @@ jQuery(document).ready(function($) {
             timeout:SISOOGDONATEADMINAJAX.REQUEST_TIMEOUT
         });
     });
-
-
-
-
 
 
 
