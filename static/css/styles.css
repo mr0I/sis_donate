@@ -172,15 +172,26 @@ input[name="sisoogDonate_Amount"]{
     text-align: center;
     font-family: vazir, sans-serif, Arial, Helvetica;
 }
+.donatesList .donatesItem .card-footer .card-desc{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 8px;
+}
+.donatesList .donatesItem .card-footer .card-desc img{
+    width: 24px;
+    height: auto;
+    border-radius: 50px;
+    margin: auto 0;
+    text-align: left;
+}
 .donatesList .donatesItem .card-footer p{
     margin: 0;
     padding: 4px 8px;
     font-size: 115%;
-}
-.donatesList .donatesItem .card-footer p img{
-    width: 20px;
-    height: auto;
-    border-radius: 50px;
 }
 .donatesList .donatesItem figure{
     width: 100%;
@@ -213,13 +224,13 @@ input[name="sisoogDonate_Amount"]{
 }
 .donateListContainer .btn-group a{
     background-color: transparent;
-    color: #9b4893;
+    color: #9b4893 !important;
     padding: 5px 24px;
     border: 1px solid #9b4893;
 }
 .donateListContainer .btn-group a.active{
     background-color: #9b4893;
-    color: #EEEEEE;
+    color: #EEEEEE !important;
 }
 
 #authors_list_table td ,#authors_list_table th{
@@ -228,7 +239,7 @@ input[name="sisoogDonate_Amount"]{
 }
 
 #authors_list_table thead > tr {
-    background-color: #9b4893;
+    background-color: #424242;
 }
 #authors_list_table thead > tr th {
     color: #e0e0e0;
@@ -236,6 +247,7 @@ input[name="sisoogDonate_Amount"]{
 
 .paginate_btns {
     margin: 13px auto;
+    text-align: left;
 }
 .paginate_btns a{
     padding: 3px 10px;
@@ -244,7 +256,6 @@ input[name="sisoogDonate_Amount"]{
     font-weight: 700;
     font-size: 100%;
     margin: 3px;
-    border-radius: 50px;
     border: 1px solid #9b4893;
     font-family: vazir, sans-serif, Arial, Helvetica;
 }

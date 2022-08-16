@@ -6,7 +6,6 @@ $configs = include_once(ROOT_PATH . 'config.php');
 include_once(INC_DIR . 'functions.php');
 
 
-
 if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
   wp_die('خطای دسترسی!');
   return;
@@ -21,7 +20,7 @@ if (isset($_GET['Authority'])) {
   $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
   $MerchantID = $merchant[0]->merchant_id;
   $postUrl = get_permalink($donate[0]->PostID);
-} elseif(isset($_GET['clientrefid'])) {
+} elseif (isset($_GET['clientrefid'])) {
   $gateway_name = 'payping';
   // payping codes
 }
@@ -66,7 +65,7 @@ switch ($gateway_name) {
 		  curl_close($curl);
 		  if ($err) {
 			payPingDonate_ChangeStatus($id, 'ERROR');
-			$error .= get_option( 'payPingDonate_IsError') . "<br>\r\n";
+			$error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
 			$error .= 'خطا در ارتباط به پی‌پینگ : شرح خطا '.$err. "<br>\r\n";
 			payPingDonate_SetAuthority($id, $refid);
 		  } else {
@@ -75,10 +74,10 @@ switch ($gateway_name) {
 			  if (isset($_GET["refid"]) and $_GET["refid"] != '') {
 				payPingDonate_ChangeStatus($id, 'OK');
 				payPingDonate_SetAuthority($id, $refid);
-				$message .= get_option( 'payPingDonate_IsOk') . "<br>\r\n";
+				$message .= get_option( 'sisoogDonate_IsOK') . "<br>\r\n";
 				$message .= 'کد پیگیری تراکنش:'. $refid . "<br>\r\n";
-				$payPingDonate_TotalAmount = get_option("payPingDonate_TotalAmount");
-				update_option("payPingDonate_TotalAmount" , $payPingDonate_TotalAmount + $Record['AmountTomaan']);
+				$payPingDonate_TotalAmount = get_option("sisoogDonate_TotalAmount");
+				update_option("sisoogDonate_TotalAmount" , $payPingDonate_TotalAmount + $Record['AmountTomaan']);
 
 				// Send email to author
 				global $wpdb;
@@ -89,31 +88,29 @@ switch ($gateway_name) {
 				sendEmail( $AuthorName, $_GET["refid"] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
 			  } else {
 				payPingDonate_ChangeStatus($id, 'ERROR');
-				$error .= get_option( 'payPingDonate_IsError') . "<br>\r\n";
+				$error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
 				payPingDonate_SetAuthority($id, $refid);
 				$error .= 'متافسانه سامانه قادر به دریافت کد پیگیری نمی باشد! نتیجه درخواست : ' . payPingDonate_GetResaultStatusString($header['http_code']) . '(' . $header['http_code'] . ')' . "<br>\r\n";
 			  }
 			} elseif ($header['http_code'] == 400) {
 			  payPingDonate_ChangeStatus($id, 'ERROR');
-			  $error .= get_option( 'payPingDonate_IsError') . "<br>\r\n";
+			  $error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
 			  payPingDonate_SetAuthority($id, $refid);
 			  $error .= 'تراکنش ناموفق بود- شرح خطا : ' .  implode('. ',array_values (json_decode($response,true))) . "<br>\r\n";
 			}  else {
 			  payPingDonate_ChangeStatus($id, 'ERROR');
-			  $error .= get_option( 'payPingDonate_IsError') . "<br>\r\n";
+			  $error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
 			  payPingDonate_SetAuthority($id, $refid);
 			  $error .= ' تراکنش ناموفق بود- شرح خطا : ' . payPingDonate_GetResaultStatusString($header['http_code']) . '(' . $header['http_code'] . ')'. "<br>\r\n";
 			}
 		  }
 		} catch (Exception $e){
 		  payPingDonate_ChangeStatus($id, 'ERROR');
-		  $error .= get_option( 'payPingDonate_IsError') . "<br>\r\n";
+		  $error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
 		  payPingDonate_SetAuthority($id, $refid);
 		  $error .= ' تراکنش ناموفق بود- شرح خطا سمت برنامه شما : ' . $e->getMessage(). "<br>\r\n";
 		}
-
 	  }
-
 	}
 	break;
   case 'zarinpal':
@@ -128,8 +125,6 @@ switch ($gateway_name) {
 	  }
 	  else
 	  {
-		//$configs = include(plugin_dir_path(__FILE__) . '/config.php');
-
 		if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		// $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
@@ -150,7 +145,7 @@ switch ($gateway_name) {
 		  $message .= get_option( 'EZD_IsOk') . "<br>\r\n";
 		  $message .= 'کد پیگیری تراکنش:'. $result['RefID'] . "<br>\r\n";
 
-		  // Send email to author
+		  // send email to author
 		  global $wpdb;
 		  $table = $wpdb->prefix . TABLE_DONATE;
 		  $donate = $wpdb->get_results( "SELECT * FROM $table WHERE Authority='$Authority' ");
@@ -158,9 +153,12 @@ switch ($gateway_name) {
 		  $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$AuthorName' ");
 		  sendEmail( $AuthorName, $result['RefID'] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
 		} else {
-		  EZD_ChangeStatus($Authority, 'ERROR');
-		  $error .= get_option( 'EZD_IsError') . "<br>\r\n";
-		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
+//		  EZD_ChangeStatus($Authority, 'ERROR');
+//		  $error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
+//		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
+
+		  $homeUrl = home_url();
+		  echo "<script>alert('خطای نامشخص!'); document.location = '${homeUrl}'</script>";
 		}
 	  }
 	}
@@ -175,22 +173,22 @@ switch ($gateway_name) {
 
 
 <?php
-    if ($message) {
-      echo '<div class="alert alert-success text-center" role="alert">
+if ($message) {
+  echo '<div class="alert alert-success text-center" role="alert">
       <h4 class="alert-heading">پرداخت با موفقیت انجام شد :)</h4>
-      <p style="color: inherit">'.$message.'</p>
+      <small style="color: inherit;text-align:center;">'.$message.'</small>
     </div>';
-    } elseif ($error) {
-      echo '<div class="alert alert-danger text-center" role="alert">
+} elseif ($error) {
+  echo '<div class="alert alert-danger text-center" role="alert">
       <h4 class="alert-heading">خطا در انجام عملیات!</h4>
-      <p style="color: inherit">'.$error.'</p>
+      <small style="color: inherit;text-align:center;">'.$error.'</small>
       <hr>
       <p> <a href="'.$postUrl.'"><small>بازگشت</small></a></p>
     </div>';
-    } else {
-	  echo '<div class="alert alert-warning text-center" role="alert">
+} else {
+  echo '<div class="alert alert-warning text-center" role="alert">
       <h4 class="alert-heading">خطا در انجام عملیات!</h4>
-      <p style="color: inherit">یک خطای نامشخص رخ داد. مجددا تلاش نمایید</p>
+      <small style="color: inherit;text-align:center;">یک خطای نامشخص رخ داد. مجددا تلاش نمایید</small>
         </div>';
-    }
+}
 ?>

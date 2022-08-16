@@ -219,3 +219,11 @@ if (! function_exists('decryptHash')){
 	return json_decode(openssl_decrypt($ciphertext, AES_METHOD, $cryptoKey, OPENSSL_RAW_DATA, $iv));
   }
 }
+
+function getOneMerchant($user_id,$merchants_table)
+{
+  global $wpdb;
+  //$merchantTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
+
+  return $wpdb->get_results("SELECT * FROM ${merchants_table} WHERE user_id = '${user_id}' LIMIT 1");
+}
