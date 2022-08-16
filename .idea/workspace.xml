@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ace56631-1601-4bd0-a24b-afbce957b02b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/site/views/show_author_donates_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/ajax_requests.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/ajax_requests.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/views/mainSettings.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/mainSettings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base_functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/base_functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Uninstall.php" beforeDir="false" afterPath="$PROJECT_DIR$/Uninstall.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/views/merchantIds.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/merchantIds.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inc/shortcode.php" beforeDir="false" afterPath="$PROJECT_DIR$/inc/shortcode.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site/views/donate_landing_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/donate_landing_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/site/views/show_donate_form.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/show_donate_form.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/views/show_authors_list.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/site/views/show_donates_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/show_donates_list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,18 +21,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/inc/shortcode.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
+            <state relative-caret-position="572">
               <caret line="26" column="28" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="28" />
             </state>
           </provider>
@@ -40,63 +32,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/inc/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="127" column="48" lean-forward="true" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
+            <state relative-caret-position="792">
+              <caret line="127" column="48" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/admin_proccess.php">
+        <entry file="file://$PROJECT_DIR$/inc/shortcode.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+            <state relative-caret-position="264">
+              <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/site/views/show_author_donates_list.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="638">
+              <caret line="44" column="127" selection-start-line="44" selection-start-column="127" selection-end-line="44" selection-end-column="127" />
+              <folding>
+                <element signature="e#385#407#0#HTML" expanded="true" />
+                <element signature="e#1521#1543#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/site/views/donate_landing_page.php">
+        <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+            <state relative-caret-position="66">
+              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
               <folding>
-                <element signature="e#626#4255#0#PHP" />
-                <element signature="e#643#4247#0#PHP" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/site/views/show_donate_form.php">
+        <entry file="file://$PROJECT_DIR$/static/css/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="84" column="90" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="90" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/base_functions.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/ajax_requests.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3040">
-              <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
+            <state relative-caret-position="363">
+              <caret line="232" column="35" lean-forward="true" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -104,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+            <state relative-caret-position="1122">
+              <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -122,11 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_AddDonate</find>
-      <find>sisoogDonate_AddDonate</find>
-      <find>$CallbackURL</find>
-      <find>payerName</find>
-      <find>لینک صفحه ورود</find>
       <find>get_op</find>
       <find>sisoogDonate_CallbackUrl</find>
       <find>sisoogDonate_CallbackSlug</find>
@@ -152,12 +128,18 @@
       <find>$user_id</find>
       <find>MerchantID</find>
       <find>TABLE_MERCHANTS_IDS</find>
+      <find>$_SESSION</find>
+      <find>authority</find>
+      <find>radshid.com</find>
+      <find>payPingDonate</find>
+      <find>e5490a</find>
     </findStrings>
     <replaceStrings>
       <replace>$author_id</replace>
       <replace>'</replace>
       <replace>sisoogDonate_CallbackSlug</replace>
       <replace>sisoogDonate</replace>
+      <replace>9b4893</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\wp2\wp-content\plugins\sisoog_donate</dir>
@@ -176,8 +158,6 @@
         <option value="$PROJECT_DIR$/admin/ajax_requests.js" />
         <option value="$PROJECT_DIR$/admin/views/sisoogDonate_mainSettings.php" />
         <option value="$PROJECT_DIR$/admin/views/sisoogDonate_Supporters.php" />
-        <option value="$PROJECT_DIR$/admin/views/merchantIds.php" />
-        <option value="$PROJECT_DIR$/Uninstall.php" />
         <option value="$PROJECT_DIR$/admin/views/supporters.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/config.example.php" />
@@ -186,13 +166,19 @@
         <option value="$PROJECT_DIR$/inc/rewrite_rules.php" />
         <option value="$PROJECT_DIR$/inc/functions.php" />
         <option value="$PROJECT_DIR$/admin/admin_proccess.php" />
-        <option value="$PROJECT_DIR$/inc/shortcode.php" />
         <option value="$PROJECT_DIR$/admin/views/mainSettings.php" />
         <option value="$PROJECT_DIR$/site/views/show_donate_form.php" />
         <option value="$PROJECT_DIR$/static/js/scripts.js" />
         <option value="$PROJECT_DIR$/admin/ajax_requests.php" />
         <option value="$PROJECT_DIR$/base_functions.php" />
+        <option value="$PROJECT_DIR$/admin/views/merchantIds.php" />
         <option value="$PROJECT_DIR$/site/views/donate_landing_page.php" />
+        <option value="$PROJECT_DIR$/site/views/show_donates_list.php" />
+        <option value="$PROJECT_DIR$/site/views/show_authors_list.php" />
+        <option value="$PROJECT_DIR$/inc/shortcode.php" />
+        <option value="$PROJECT_DIR$/Uninstall.php" />
+        <option value="$PROJECT_DIR$/site/views/show_author_donates_list.php" />
+        <option value="$PROJECT_DIR$/static/css/styles.css" />
       </list>
     </option>
   </component>
@@ -208,6 +194,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -215,11 +202,48 @@
               <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
               <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="inc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,17 +278,20 @@
       <workItem from="1660364476607" duration="1460000" />
       <workItem from="1660378080905" duration="1192000" />
       <workItem from="1660464144626" duration="12035000" />
-      <workItem from="1660537274201" duration="26475000" />
+      <workItem from="1660537274201" duration="26493000" />
+      <workItem from="1660622339135" duration="8597000" />
+      <workItem from="1660631591995" duration="1498000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41162000" />
+    <option name="totallyTimeSpent" value="51275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16897655" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17217484" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -349,6 +376,7 @@
       </map>
     </option>
   </component>
+  <component name="WordPressConfiguration" doNotAskAgain="true" />
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -364,16 +392,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/ajax_requests.js" />
-    <entry file="file://$PROJECT_DIR$/admin/views/merchantIds.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Uninstall.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.example.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -395,12 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/views/show_authors_list.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
@@ -415,85 +427,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inc/shortcode.php">
+    <entry file="file://$PROJECT_DIR$/base_functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="14" lean-forward="true" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
+        <state relative-caret-position="374">
+          <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="28" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/ajax_requests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3784">
+          <caret line="172" column="40" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1122">
+          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/merchantIds.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="37" column="9" lean-forward="true" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/site/views/donate_landing_page.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" selection-start-line="4" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/views/mainSettings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="54" column="20" lean-forward="true" selection-start-line="54" selection-start-column="20" selection-end-line="54" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#select#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#form#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="506">
+          <caret line="47" selection-start-line="47" selection-end-line="48" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inc/functions.php">
+    <entry file="file://$PROJECT_DIR$/site/views/show_donate_form.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="127" column="48" lean-forward="true" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
+        <state relative-caret-position="792">
+          <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admin/admin_proccess.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+          <caret line="8" column="31" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/views/show_donate_form.php">
+    <entry file="file://$PROJECT_DIR$/inc/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="84" column="90" selection-start-line="84" selection-start-column="79" selection-end-line="84" selection-end-column="90" />
+        <state relative-caret-position="792">
+          <caret line="127" column="48" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inc/shortcode.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="77" selection-start-line="12" selection-start-column="77" selection-end-line="12" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Uninstall.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/site/views/show_author_donates_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="44" column="127" selection-start-line="44" selection-start-column="127" selection-end-line="44" selection-end-column="127" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#385#407#0#HTML" expanded="true" />
+            <element signature="e#1521#1543#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/scripts.js">
+    <entry file="file://$PROJECT_DIR$/static/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="51" column="35" lean-forward="true" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+        <state relative-caret-position="363">
+          <caret line="232" column="35" lean-forward="true" selection-start-line="232" selection-start-column="35" selection-end-line="232" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/base_functions.php">
+    <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="20" column="43" lean-forward="true" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/ajax_requests.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3040">
-          <caret line="172" column="40" lean-forward="true" selection-start-line="172" selection-start-column="40" selection-end-line="172" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/site/views/donate_landing_page.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+        <state relative-caret-position="66">
+          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
           <folding>
-            <element signature="e#626#4255#0#PHP" />
-            <element signature="e#643#4247#0#PHP" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

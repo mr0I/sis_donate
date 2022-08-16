@@ -7,21 +7,24 @@ include_once(INC_DIR . 'functions.php');
 
 
 
-$donatesTable = $wpdb->prefix . TABLE_DONATE;
-$merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-$donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
-$author_id = $donate[0]->author_id;
-$merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
-$MerchantID = $merchant->merchant_id;
-var_dump($MerchantID);
-
-
 if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
   wp_die('خطای دسترسی!');
   return;
 }
-if (isset($_GET['Authority'])) $gateway_name = 'zarinpal';
-else $gateway_name = 'payping';
+if (isset($_GET['Authority'])) {
+  $gateway_name = 'zarinpal';
+  $authority = $_GET['Authority'];
+  $donatesTable = $wpdb->prefix . TABLE_DONATE;
+  $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
+  $donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
+  $author_id = $donate[0]->author_id;
+  $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
+  $MerchantID = $merchant[0]->merchant_id;
+  $postUrl = get_permalink($donate[0]->PostID);
+} elseif(isset($_GET['clientrefid'])) {
+  $gateway_name = 'payping';
+  // payping codes
+}
 
 
 switch ($gateway_name) {
@@ -115,66 +118,79 @@ switch ($gateway_name) {
 	break;
   case 'zarinpal':
 	require_once( LIBDIR . '/nusoap.php' );
-	if(isset($_GET['Authority']))
-	{
-	  require_once( LIBDIR . '/nusoap.php' );
 
-	  $Authority = filter_input(INPUT_GET, 'Authority', FILTER_SANITIZE_SPECIAL_CHARS);
-	  if($_GET['Status'] == 'OK'){
-		$Record = EZD_GetDonate($Authority);
-		if( $Record  === false)
-		{
-		  $error .= 'چنین تراکنشی در سایت ثبت نشده است' . "<br>\r\n";
-		}
-		else
-		{
-		  //$configs = include(plugin_dir_path(__FILE__) . '/config.php');
-
-			if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-			else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-		 // $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-
-		  $client->soap_defencoding = 'UTF-8';
-		  $result = $client->call('PaymentVerification', array(
-				  array(
-					  'MerchantID'	 => $MerchantID,
-					  'Authority' 	 => $Record['Authority'],
-					  'Amount'	 	 => $Record['AmountTomaan']
-				  )
-			  )
-		  );
-
-		  if($result['Status'] == 100)
-		  {
-			EZD_ChangeStatus($Authority, 'OK');
-			$message .= get_option( 'EZD_IsOk') . "<br>\r\n";
-			$message .= 'کد پیگیری تراکنش:'. $result['RefID'] . "<br>\r\n";
-
-			// Send email to author
-			global $wpdb;
-			$table = $wpdb->prefix . TABLE_DONATE;
-			$donate = $wpdb->get_results( "SELECT * FROM $table WHERE Authority='$Authority' ");
-			$AuthorName = $donate[0]->Author;
-			$AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$AuthorName' ");
-			sendEmail( $AuthorName, $result['RefID'] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
-		  }
-		  else
-		  {
-			EZD_ChangeStatus($Authority, 'ERROR');
-			$error .= get_option( 'EZD_IsError') . "<br>\r\n";
-			$error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
-		  }
-		}
+	$Authority = filter_input(INPUT_GET, 'Authority', FILTER_SANITIZE_SPECIAL_CHARS);
+	if($_GET['Status'] == 'OK'){
+	  $Record = EZD_GetDonate($Authority);
+	  if( $Record  === false)
+	  {
+		$error .= 'چنین تراکنشی در سایت ثبت نشده است' . "<br>\r\n";
 	  }
 	  else
 	  {
-		$error .= 'تراکنش توسط کاربر بازگشت خورد';
-		EZD_ChangeStatus($Authority, 'CANCEL');
+		//$configs = include(plugin_dir_path(__FILE__) . '/config.php');
+
+		if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+		else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+		// $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
+
+		$client->soap_defencoding = 'UTF-8';
+		$result = $client->call('PaymentVerification', array(
+				array(
+					'MerchantID'	 => $MerchantID,
+					'Authority' 	 => $Record['Authority'],
+					'Amount'	 	 => $Record['AmountTomaan']
+				)
+			)
+		);
+
+		if($result['Status'] == 100)
+		{
+		  EZD_ChangeStatus($Authority, 'OK');
+		  $message .= get_option( 'EZD_IsOk') . "<br>\r\n";
+		  $message .= 'کد پیگیری تراکنش:'. $result['RefID'] . "<br>\r\n";
+
+		  // Send email to author
+		  global $wpdb;
+		  $table = $wpdb->prefix . TABLE_DONATE;
+		  $donate = $wpdb->get_results( "SELECT * FROM $table WHERE Authority='$Authority' ");
+		  $AuthorName = $donate[0]->Author;
+		  $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$AuthorName' ");
+		  sendEmail( $AuthorName, $result['RefID'] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
+		} else {
+		  EZD_ChangeStatus($Authority, 'ERROR');
+		  $error .= get_option( 'EZD_IsError') . "<br>\r\n";
+		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
+		}
 	  }
+	}
+	else
+	{
+	  $error .= 'تراکنش توسط کاربر بازگشت خورد';
+	  EZD_ChangeStatus($Authority, 'CANCEL');
 	}
 	break;
 }
 ?>
 
 
-<p><?= $message; ?></p>
+<?php
+    if ($message) {
+      echo '<div class="alert alert-success text-center" role="alert">
+      <h4 class="alert-heading">پرداخت با موفقیت انجام شد :)</h4>
+      <p style="color: inherit">'.$message.'</p>
+    </div>';
+    } elseif ($error) {
+      echo '<div class="alert alert-danger text-center" role="alert">
+      <h4 class="alert-heading">خطا در انجام عملیات!</h4>
+      <p style="color: inherit">'.$error.'</p>
+      <hr>
+      <p> <a href="'.$postUrl.'"><small>بازگشت</small></a></p>
+    </div>';
+    } else {
+	  echo '<div class="alert alert-warning text-center" role="alert">
+      <h4 class="alert-heading">خطا در انجام عملیات!</h4>
+      <p style="color: inherit">یک خطای نامشخص رخ داد. مجددا تلاش نمایید</p>
+        </div>';
+    }
+?>

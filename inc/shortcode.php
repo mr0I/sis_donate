@@ -3,14 +3,14 @@
 
 add_action( 'init', function () {
   add_shortcode('SisoogDonate', 'ShowDonateFrm');
-  add_shortcode('ShowAuthorsList', 'ShowAuthorsList');
+  add_shortcode('ShowAuthorDonatesList', 'ShowAuthorDonatesList');
   add_shortcode('ShowDonatesList', 'ShowDonatesList');
   add_shortcode('DonateLandingPage', 'DonateLanding');
 });
 
-function ShowAuthorsList(){
+function ShowAuthorDonatesList(){
   ob_start();
-  include(plugin_dir_path( __FILE__ ).'../site/views/show_authors_list.php');
+  include(plugin_dir_path( __FILE__ ).'../site/views/show_author_donates_list.php');
   return do_shortcode(ob_get_clean());
 }
 function ShowDonatesList(){
