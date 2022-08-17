@@ -211,10 +211,15 @@ function sendEmail($name,$tracking_code,$AmountTomaan, $post_title ,$email){
 }
 
 if (! function_exists('decryptHash')){
+
   function decryptHash($ciphered, $cryptoKey) {
-	$data       = explode(":", $ciphered);
-	$iv         = hex2bin($data[0]);
-	$ciphertext = hex2bin($data[1]);
+	try{
+	  $data       = explode(":", $ciphered);
+	  $iv         = hex2bin($data[0]);
+	  $ciphertext = hex2bin($data[1]);
+	} catch (Exception $e) {
+	  echo 'error:' . $e;
+	}
 
 	return json_decode(openssl_decrypt($ciphertext, AES_METHOD, $cryptoKey, OPENSSL_RAW_DATA, $iv));
   }
@@ -223,7 +228,5 @@ if (! function_exists('decryptHash')){
 function getOneMerchant($user_id,$merchants_table)
 {
   global $wpdb;
-  //$merchantTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-
   return $wpdb->get_results("SELECT * FROM ${merchants_table} WHERE user_id = '${user_id}' LIMIT 1");
 }

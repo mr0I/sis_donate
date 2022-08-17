@@ -114,7 +114,7 @@
     padding:  0 !important;
 }
 
-input[name="sisoogDonate_Amount"]{
+input[name="input_amount"]{
     display:none;
     margin: 8px auto;
 }
@@ -128,7 +128,7 @@ input[name="sisoogDonate_Amount"]{
 .donatesList {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
     width: 100%;
@@ -136,10 +136,10 @@ input[name="sisoogDonate_Amount"]{
 }
 .donatesList .donatesItem{
     padding: 0;
-    margin:13px;
     border-radius: 3px;
     border-color: #fff;
     box-shadow: 0 0 3px #e0e0e0;
+    margin: 13px 13px 13px auto;
 }
 .donatesList .donatesItem .card-body {
     padding: 0 13px;

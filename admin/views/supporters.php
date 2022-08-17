@@ -142,7 +142,7 @@ include_once(INC_DIR . 'functions.php');
   </table>
 
   <div class="tablenav bottom">
-	<div class="alignright actions paginate_btns">
+	<div class="actions paginate_btns" style="text-align:center;">
 	  <?php
 	  $totalPay = count($total);
 

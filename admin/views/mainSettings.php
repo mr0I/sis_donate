@@ -126,10 +126,8 @@ if ( $_POST ) {
         const sisoogDonate_CustomStyleBox = $('#sisoogDonate_CustomStyleBox');
 
         $("#sisoogDonate_UseCustomStyle").change(function(){
-            if($(this).prop('checked'))
-                $(sisoogDonate_CustomStyleBox).slideDown(500);
-            else
-                $(sisoogDonate_CustomStyleBox).slideUp(500);
+            if($(this).prop('checked')) $(sisoogDonate_CustomStyleBox).slideDown(500);
+            else $(sisoogDonate_CustomStyleBox).slideUp(500);
         });
     })
 </script>

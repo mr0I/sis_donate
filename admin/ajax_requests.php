@@ -4,8 +4,10 @@
 
 function addDonateFrm_callback()
 {
-  check_ajax_referer( 'Ny3nIq4Tq8o6', 'security' );
+  $configs = include_once(ROOT_PATH. 'config.php');
+  include_once(INC_DIR . 'functions.php');
 
+  check_ajax_referer( 'Ny3nIq4Tq8o6', 'security' );
   if ( ! wp_verify_nonce($_POST['nonce'], 'donate-frm-nonce')) {
 	$data=array( 'success' => false ,'res' => 'Authenticate Error' );
 	echo json_encode($data);
@@ -13,24 +15,18 @@ function addDonateFrm_callback()
   }
 
   // inits
-  $configs = include_once(ROOT_PATH. 'config.php');
-  include_once(INC_DIR . 'functions.php');
- // $out = '';
   $error = '';
-//  $message = '';
-//  $sisoogDonate_IsOK = get_option( 'sisoogDonate_IsOK');
-//  $sisoogDonate_IsError = get_option( 'sisoogDonate_IsError');
   $sisoogDonate_Unit = get_option( 'sisoogDonate_Unit');
 
-  $Name =           filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);  // Required
-  $Description =    filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_SPECIAL_CHARS);  // Required
-  $Mobile =         filter_input(INPUT_POST, 'mobile', FILTER_SANITIZE_SPECIAL_CHARS); // Optional
-  $Email =          filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS); // Optional
+  $Name =           filter_input(INPUT_POST, 'name', FILTER_SANITIZE_SPECIAL_CHARS);
+  $Description =    filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_SPECIAL_CHARS);
+  $Mobile =         filter_input(INPUT_POST, 'mobile', FILTER_SANITIZE_SPECIAL_CHARS);
+  $Email =          filter_input(INPUT_POST, 'email', FILTER_SANITIZE_SPECIAL_CHARS);
   $Amount =         filter_input(INPUT_POST, 'amount', FILTER_SANITIZE_SPECIAL_CHARS);
-  $AuthorId =       filter_input(INPUT_POST, 'author_id', FILTER_SANITIZE_SPECIAL_CHARS); // Required
-  $userName =       filter_input(INPUT_POST, 'user_name' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
-  $postId =         filter_input(INPUT_POST, 'post_id' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
-  $donateData =         filter_input(INPUT_POST, 'donate_data' , FILTER_SANITIZE_SPECIAL_CHARS); // Required
+  $AuthorId =       filter_input(INPUT_POST, 'author_id', FILTER_SANITIZE_SPECIAL_CHARS);
+  $userName =       filter_input(INPUT_POST, 'user_name' , FILTER_SANITIZE_SPECIAL_CHARS);
+  $postId =         filter_input(INPUT_POST, 'post_id' , FILTER_SANITIZE_SPECIAL_CHARS);
+  $donateData =         filter_input(INPUT_POST, 'donate_data' , FILTER_SANITIZE_SPECIAL_CHARS);
   $SendDescription = $Name . ' | ' . $Mobile . ' | ' . $Email . ' | ' . $Description ;
 
 
@@ -47,8 +43,22 @@ function addDonateFrm_callback()
   $author_id = $reqData['user_id'];
   $ts = $reqData['ts'];
   $currentTime = time();
-  //if ($currentTime - $ts > 600) $error .= 'مدت زمان مجاز برای این فرایند سپری شد:(' . "<br>\r\n";
 
+  $obj = [
+  	'$currentTime' => $currentTime,
+  	'$ts' => $ts,
+  ];
+
+  if ($currentTime - $ts > 600) {
+	$data=array( 'success' => false ,'error' => 'مدت زمان مجاز برای این فرایند سپری شد!','status' => '400' );
+	echo json_encode($data);
+	exit();
+  } else {
+	$data=array( 'success' => false ,'obj' => $obj );
+	echo json_encode($data);
+	exit();
+
+  }
 
   $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
   $merchants = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${user_id}' LIMIT 1");
@@ -113,26 +123,45 @@ function addDonateFrm_callback()
 		  $err = curl_error($curl);
 		  curl_close($curl);
 		  if ($err) {
-			echo "cURL Error #:" . $err;
+					  $data=array( 'success' => false ,'error' => $err );
+		  echo json_encode($data);
+		  exit();
 		  } else {
 			if ($header['http_code'] == 200) {
 			  $response = json_decode($response, true);
 			  if (isset($response["code"]) and $response["code"] != '') {
-				$url = sprintf('https://api.payping.ir/v1/pay/gotoipg/%s', $response["code"]) ;
+				$redirectUrl = sprintf('https://api.payping.ir/v1/pay/gotoipg/%s', $response["code"]) ;
 
-				echo '<meta http-equiv="refresh" content="0;url='.$url.'"><script>window.location.replace("'.$url.'");</script>';
-				exit;
+				$data=array( 'success' => true ,'redirect_url' => $redirectUrl );
+				echo json_encode($data);
+				exit();
 			  } else {
 				$error .= ' تراکنش ناموفق بود- شرح خطا : عدم وجود کد ارجاع '. "<br>\r\n";
+
+				$data=array( 'success' => false ,'error' => $error );
+				echo json_encode($data);
+				exit();
 			  }
 			} elseif ($header['http_code'] == 400) {
 			  $error .= ' تراکنش ناموفق بود- شرح خطا : ' . implode('. ',array_values (json_decode($response,true))). "<br>\r\n" ;
+
+			  $data=array( 'success' => false ,'error' => $error );
+			  echo json_encode($data);
+			  exit();
 			} else {
-			  $error .= ' تراکنش ناموفق بود- شرح خطا : ' . sisoogDonate_GetResaultStatusString($header['http_code']) . '(' . $header['http_code'] . ')'. "<br>\r\n";
+			  $error .= ' تراکنش ناموفق بود- شرح خطا : ' . payPingDonate_GetResaultStatusString($header['http_code']) . '(' . $header['http_code'] . ')'. "<br>\r\n";
+
+			  $data=array( 'success' => false ,'error' => $error );
+			  echo json_encode($data);
+			  exit();
 			}
 		  }
 		} catch (Exception $e){
 		  $error .= ' تراکنش ناموفق بود- شرح خطا سمت برنامه شما : ' . $e->getMessage(). "<br>\r\n";
+
+		  $data=array( 'success' => false ,'error' => $error );
+		  echo json_encode($data);
+		  exit();
 		}
 		break;
 	  case 'zarinpal':
@@ -179,18 +208,21 @@ function addDonateFrm_callback()
 		  $data=array( 'success' => true ,'redirect_url' => $redirectUrl );
 		  echo json_encode($data);
 		  exit();
-		  //return "<script>document.location = '${Location}'</script><center>در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید <a href='${Location}'>اینجا</a> را کلیک کنید.</center>";
 		}
 		else
 		{
 		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
 
-		  $data=array( 'success' => false ,'Error' => $error );
+		  $data=array( 'success' => false ,'error' => $error );
 		  echo json_encode($data);
 		  exit();
 		}
 		break;
 	}
+  } else {
+	$data=array( 'success' => false ,'error' => $error );
+	echo json_encode($data);
+	exit();
   }
 
 

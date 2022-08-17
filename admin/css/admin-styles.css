@@ -1,0 +1,36 @@
+.tablenav a{
+    padding: 3px 13px;
+    background: #757575;
+    margin: 3px;
+    color: #eee;
+    text-decoration: none;
+}
+
+#wpfooter {
+    position: relative !important;
+}
+
+.paginate_btns {
+    margin: 13px auto;
+}
+.paginate_btns a{
+    padding: 3px 10px;
+    color: #0073aa;
+    background-color: transparent;
+    font-weight: 700;
+    font-size: 100%;
+    margin: 3px;
+    border-radius: 5px;
+    border: 1px solid #0073aa;
+}
+.paginate_btns a:hover , .paginate_btns a.active{
+    color: #EEEEEE;
+    background-color: #0073aa;
+}
+
+#search-submit{
+    background-color: #0073aa;
+    color: #eee;
+    border-color: #0073aa;
+    box-shadow: none;
+}

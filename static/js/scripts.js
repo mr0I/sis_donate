@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+
     const sisoogDonate_Amount_Input = document.getElementById('sisoogDonate_Amount_Input');
     const sisoogDonate_Name_Input = document.getElementById('sisoogDonate_Name_Input');
     const sisoogDonate_Amount_Select = document.getElementById('sisoogDonate_Amount_Select');
@@ -6,7 +7,7 @@ jQuery(document).ready(function($) {
     const sisoogDonate_Submit = $('.sisoogDonate_Submit');
     sisoogDonate_Amount_Input ? sisoogDonate_Amount_Input.defaultValue='10000' : '';
 
-// add donate frm from
+    // add donate frm from
     $(add_donate_frm).on('change' , function () {
         const name_val = sisoogDonate_Name_Input.value;
         const select_val = sisoogDonate_Amount_Select.value;
@@ -19,12 +20,8 @@ jQuery(document).ready(function($) {
     });
 
     $(sisoogDonate_Amount_Select).on('change' , function () {
-        if ($(this).val() === 'others'){
-            $(sisoogDonate_Amount_Input).css('display' , 'block');
-        } else {
-            $(sisoogDonate_Amount_Input).css('display' , 'none');
-            $(sisoogDonate_Amount_Input).val(Number($(this).val()));
-        }
+        if ($(this).val() === 'other_prices') $(sisoogDonate_Amount_Input).fadeIn('fast');
+        else $(sisoogDonate_Amount_Input).fadeOut('fast').val(Number($(this).val()));
     });
 
     $(add_donate_frm).on('submit' , function (e) {
@@ -34,10 +31,13 @@ jQuery(document).ready(function($) {
         const email = document.forms['add_donate_frm']['email'].value;
         const mobile = document.forms['add_donate_frm']['mobile'].value;
         const desc = document.forms['add_donate_frm']['desc'].value;
-        const amount = document.forms['add_donate_frm']['amount'].value;
+        const amount = document.forms['add_donate_frm']['amount'].value !== 'other_prices'
+            ? document.forms['add_donate_frm']['amount'].value
+            : document.forms['add_donate_frm']['input_amount'].value ;
         const author_id = document.forms['add_donate_frm']['author_id'].value;
         const user_name = document.forms['add_donate_frm']['user_name'].value;
         const post_id = document.forms['add_donate_frm']['post_id'].value;
+        const post_url = document.forms['add_donate_frm']['post_url'].value;
         const donate_data = document.forms['add_donate_frm']['donate_data'].value;
 
         const data = {
@@ -66,10 +66,16 @@ jQuery(document).ready(function($) {
                 const response = JSON.parse(res);
                 if (xhr === 'success' && response.success ){
                     alert('در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید');
+                    return;
 
                     setTimeout(function () {
                         window.location.href = response.redirect_url;
                     },1000)
+                } else if(! response.success && response.status === '400') {
+                    alert(response.error);
+                    window.location.replace(post_url);
+                } else {
+                    alert(response.error);
                 }
             },error:function (jqXHR, textStatus, errorThrown) {
                 if(textStatus==='timeout') {
@@ -82,7 +88,6 @@ jQuery(document).ready(function($) {
             timeout:SISOOGDONATEADMINAJAX.REQUEST_TIMEOUT
         });
     });
-
 
 
     // Separate Digits

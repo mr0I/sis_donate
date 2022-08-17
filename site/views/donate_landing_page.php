@@ -158,7 +158,7 @@ switch ($gateway_name) {
 //		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
 
 		  $homeUrl = home_url();
-		  echo "<script>alert('خطای نامشخص!'); document.location = '${homeUrl}'</script>";
+		  echo "<script>document.location = '${homeUrl}'</script>";
 		}
 	  }
 	}

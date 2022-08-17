@@ -50,7 +50,6 @@ if (isset($_POST['add_merchantId_submit']) && $_POST['add_merchantId_submit'] ==
 //  $merchant = $wpdb->get_results("SELECT * FROM ${merchantTable} WHERE user_id = '${user_id}' LIMIT 1");
   $merchant = getOneMerchant($user_id,$merchantTable);
   ?>
-
     <table class="form-table" role="presentation">
         <tbody>
         <tr>

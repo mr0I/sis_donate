@@ -8,8 +8,6 @@ Author: IO
 Author URI:
 */
 defined('ABSPATH') or die('Access denied!');
-require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-
 
 // define constants
 define('ROOT_DIR', plugin_dir_url(__FILE__));
@@ -26,22 +24,19 @@ define('LIBDIR', plugin_dir_path(__FILE__) . 'lib/');
 define ('TABLE_DONATE'  , 'sisoog_donate');
 define ('TABLE_MERCHANTS_IDS'  , 'gateway_merchantsids');
 
+require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+
+
 // enqueue statics
 add_action ('admin_enqueue_scripts', function(){
   wp_enqueue_style('admin-styles', ADMIN_CSS.'admin-styles.css');
-  wp_enqueue_script('admin-scripts', ADMIN_JS.'admin-scripts.js' , array('jquery'));
-  wp_localize_script( 'admin-scripts', 'SISOOGDONATEADMINAJAX', array(
-	  'ajaxurl' => admin_url( 'admin-ajax.php' ),
-	  'security' => wp_create_nonce( 'Ny3nIq4Tq8o6' ),
-	  'request_timeout' => 30000,
-  ));
 });
 add_action( 'wp_enqueue_scripts', function(){
   wp_enqueue_style( 'sisoog_donate_styles', SITE_CSS . 'styles.css');
   wp_enqueue_script('sisoog_donate_scripts', SITE_JS.'scripts.js' , array('jquery'));
   wp_localize_script( 'sisoog_donate_scripts', 'SISOOGDONATEADMINAJAX', array(
 	  'ajaxurl' => admin_url( 'admin-ajax.php' ),
-	  'security' => wp_create_nonce( 'Ny3nIq4Tq8o6' ),
+	  'security' => wp_create_nonce('Ny3nIq4Tq8o6'),
 	  'request_timeout' => 30000,
   ));
 });
