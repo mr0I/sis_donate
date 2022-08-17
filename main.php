@@ -8,6 +8,7 @@ Author: IO
 Author URI:
 */
 defined('ABSPATH') or die('Access denied!');
+require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 // define constants
 define('ROOT_DIR', plugin_dir_url(__FILE__));
@@ -21,10 +22,9 @@ define('SITE_JS', plugin_dir_url(__FILE__) . 'static/js/');
 define('ASSETSDIR', plugin_dir_url(__FILE__) . 'static/');
 define('ADMINVIEWSDIR', plugin_dir_path(__FILE__) . 'admin/views/');
 define('LIBDIR', plugin_dir_path(__FILE__) . 'lib/');
+define ('TABLE_USERS'  , 'users');
 define ('TABLE_DONATE'  , 'sisoog_donate');
 define ('TABLE_MERCHANTS_IDS'  , 'gateway_merchantsids');
-
-require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
 
 // enqueue statics

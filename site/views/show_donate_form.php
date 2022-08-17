@@ -41,8 +41,8 @@ if ( is_user_logged_in() ) {
                   <h4>شما در حال حمایت از <span><?= $author_name; ?></span>  هستید. </h4>
 			  <?php endif; ?>
             </div>
-            <div id="sisoogDonate_Form">
-                <div class="col-lg-5 col-md-5 col-sm-12" style="z-index: 9999">
+            <div class="w-75 m-auto" id="sisoogDonate_Form">
+                <div class="col-12" style="z-index: 9999">
                     <form method="post" id="add_donate_frm" name="add_donate_frm">
                         <div class="sisoogDonate_FormItem required">
                             <label class="sisoogDonate_FormLabel">نام شما :</label>
@@ -88,15 +88,12 @@ if ( is_user_logged_in() ) {
                         <input type="hidden" value="<?= wp_create_nonce('donate-frm-nonce') ?>" id="donate_frm_nonce">
 
                         <div class="sisoogDonate_FormItem">
-                            <input type="submit" class="sisoogDonate_Submit" name="submit" value="پرداخت" disabled />
+                            <button class="sisoogDonate_Submit" name="submit" disabled>
+                                پرداخت
+                                <i class="dn-home mx-1 align-middle"></i>
+                            </button>
                         </div>
                     </form>
-                </div>
-
-                <div class="col-lg-5 col-md-5 col-sm-12">
-                    <figure>
-                        <img src="<?= ASSETSDIR . 'images/donate.jpg'; ?>">
-                    </figure>
                 </div>
             </div>
         </div>

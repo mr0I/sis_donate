@@ -2,14 +2,16 @@
     width: auto !important;
 }
 #sisoogDonate_Form{
-    width: 100% !important;
+    width: 75%;
     display: flex;
-    padding: 10px 2%;
+    padding: 30px;
     flex-flow: row wrap;
     justify-content: center;
     align-items: flex-start;
     align-content: center;
     background-color: #fff;
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 15%);
+    border-radius: 8px;
 }
 .sisoogDonate_FormTitle{
     width: 100%;
@@ -21,10 +23,10 @@
 }
 .sisoogDonate_FormTitle h4{
     margin: 0;
-    font-size: 150% !important;
+    color: #424242;
 }
 .sisoogDonate_FormTitle span{
-    color: forestgreen;
+    color: #9b4893;
     font-weight: bold;
 }
 
@@ -67,8 +69,13 @@
     margin: 13px auto;
     border-radius: 3px;
 }
-#add_donate_frm input[type="text"]{
-    color: #424242 !important;
+#add_donate_frm input[type="text"] , #add_donate_frm select{
+    width: 100%;
+    color: #424242;
+    background: #f5f5f5;
+    border: 1px solid #bdbdbd;
+    padding: 8px;
+    margin-bottom: 24px;
 }
 #add_donate_frm input::placeholder{
     color: #bdbdbd;
@@ -82,8 +89,8 @@
 }
 .sisoogDonate_FormItem.required label::after{
     content: "(الزامی)";
-    color: red;
-    vertical-align: top;
+    color: #e80000;
+    vertical-align: baseline;
     margin: 0 5px;
     font-size: 75%;
 }
@@ -96,22 +103,20 @@
 }
 
 .sisoogDonate_Submit{
-    margin-right:0 !important;
-    width:100% !important;
-    background-color: #00C851 !important;
-    color: #eee !important;
-    border-radius: 0 !important;
-    padding: 8px 16px !important;
-    font-family: vazir, sans-serif, Arial, Helvetica !important;
+    width:100%;
+    background-color: #9b4893;
+    color: #eee;
+    border-radius: 0;
     text-align: center !important;
+    margin: 13px auto;
 }
 .sisoogDonate_Submit:disabled{
     cursor: not-allowed;
 }
 
 .sisoogDonate_FormLabel {
-    width: 100% !important;
-    padding:  0 !important;
+    font-weight: bold;
+    margin: 0;
 }
 
 input[name="input_amount"]{
@@ -128,7 +133,7 @@ input[name="input_amount"]{
 .donatesList {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
     align-content: center;
     width: 100%;
@@ -139,7 +144,8 @@ input[name="input_amount"]{
     border-radius: 3px;
     border-color: #fff;
     box-shadow: 0 0 3px #e0e0e0;
-    margin: 13px 13px 13px auto;
+    margin: 13px;
+    /*margin: 13px 13px 13px auto;*/
 }
 .donatesList .donatesItem .card-body {
     padding: 0 13px;
@@ -292,6 +298,7 @@ input[name="input_amount"]{
 
 @media screen and (max-width: 768px){
     #sisoogDonate_Form{
+        width: 100%;
         flex-direction: column-reverse;
     }
 }

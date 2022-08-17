@@ -230,3 +230,24 @@ function getOneMerchant($user_id,$merchants_table)
   global $wpdb;
   return $wpdb->get_results("SELECT * FROM ${merchants_table} WHERE user_id = '${user_id}' LIMIT 1");
 }
+
+function sendEmailToAuthor($gateway,$reference,$ref_id)
+{
+  global $wpdb;
+  $donates_table = $wpdb->prefix . TABLE_DONATE;
+  $users_table = $wpdb->prefix . TABLE_USERS;
+
+  $donate = new stdClass();
+  switch ($gateway){
+	case 'zarinpal':
+	  $donate = $wpdb->get_results( "SELECT * FROM $donates_table WHERE Authority='$reference' ");
+	  break;
+	case 'payping':
+	  $donate = $wpdb->get_results( "SELECT * FROM $donates_table WHERE DonateID='$reference' ");
+	  break;
+  }
+
+  $AuthorName = $donate[0]->Author;
+  $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $users_table WHERE display_name='$AuthorName' ");
+  sendEmail( $AuthorName, $ref_id , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
+}

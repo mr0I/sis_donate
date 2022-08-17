@@ -1,6 +1,5 @@
 <?php defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-
 // donate rewrite rules
 add_action('init', function (){
   add_rewrite_rule(

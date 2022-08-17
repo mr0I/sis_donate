@@ -44,20 +44,11 @@ function addDonateFrm_callback()
   $ts = $reqData['ts'];
   $currentTime = time();
 
-  $obj = [
-  	'$currentTime' => $currentTime,
-  	'$ts' => $ts,
-  ];
 
   if ($currentTime - $ts > 600) {
 	$data=array( 'success' => false ,'error' => 'مدت زمان مجاز برای این فرایند سپری شد!','status' => '400' );
 	echo json_encode($data);
 	exit();
-  } else {
-	$data=array( 'success' => false ,'obj' => $obj );
-	echo json_encode($data);
-	exit();
-
   }
 
   $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;

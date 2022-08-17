@@ -1,10 +1,12 @@
 <?php defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 
-global $wpdb;
 $configs = include_once(ROOT_PATH . 'config.php');
 include_once(INC_DIR . 'functions.php');
 
+global $wpdb;
+$donatesTable = $wpdb->prefix . TABLE_DONATE;
+$merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
 
 if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
   wp_die('خطای دسترسی!');
@@ -13,8 +15,6 @@ if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
 if (isset($_GET['Authority'])) {
   $gateway_name = 'zarinpal';
   $authority = $_GET['Authority'];
-  $donatesTable = $wpdb->prefix . TABLE_DONATE;
-  $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
   $donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
   $author_id = $donate[0]->author_id;
   $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
@@ -22,7 +22,12 @@ if (isset($_GET['Authority'])) {
   $postUrl = get_permalink($donate[0]->PostID);
 } elseif (isset($_GET['clientrefid'])) {
   $gateway_name = 'payping';
-  // payping codes
+  $clientRefID = $_GET['clientrefid'];
+  $donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE DonateID = '${clientRefID}' LIMIT 1");
+  $author_id = $donate[0]->author_id;
+  $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
+  $MerchantID = $merchant[0]->merchant_id;
+  $postUrl = get_permalink($donate[0]->PostID);
 }
 
 
@@ -80,12 +85,7 @@ switch ($gateway_name) {
 				update_option("sisoogDonate_TotalAmount" , $payPingDonate_TotalAmount + $Record['AmountTomaan']);
 
 				// Send email to author
-				global $wpdb;
-				$table = $wpdb->prefix . TABLE_DONATE;
-				$donate = $wpdb->get_results( "SELECT * FROM $table WHERE DonateID='$id' ");
-				$AuthorName = $donate[0]->Author;
-				$AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$AuthorName' ");
-				sendEmail( $AuthorName, $_GET["refid"] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
+				sendEmailToAuthor('payping',$id,$refid);
 			  } else {
 				payPingDonate_ChangeStatus($id, 'ERROR');
 				$error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
@@ -127,7 +127,6 @@ switch ($gateway_name) {
 	  {
 		if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
-		// $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 
 		$client->soap_defencoding = 'UTF-8';
 		$result = $client->call('PaymentVerification', array(
@@ -146,17 +145,8 @@ switch ($gateway_name) {
 		  $message .= 'کد پیگیری تراکنش:'. $result['RefID'] . "<br>\r\n";
 
 		  // send email to author
-		  global $wpdb;
-		  $table = $wpdb->prefix . TABLE_DONATE;
-		  $donate = $wpdb->get_results( "SELECT * FROM $table WHERE Authority='$Authority' ");
-		  $AuthorName = $donate[0]->Author;
-		  $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$AuthorName' ");
-		  sendEmail( $AuthorName, $result['RefID'] , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
+		  sendEmailToAuthor('zarinpal',$Authority,$result['RefID']);
 		} else {
-//		  EZD_ChangeStatus($Authority, 'ERROR');
-//		  $error .= get_option( 'sisoogDonate_IsError') . "<br>\r\n";
-//		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
-
 		  $homeUrl = home_url();
 		  echo "<script>document.location = '${homeUrl}'</script>";
 		}

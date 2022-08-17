@@ -56,7 +56,7 @@ $date = new jDateTime(true, true, 'Asia/Tehran');
 		?>
 		<div class="card donatesItem col-lg-3 col-md-4 col-sm-12">
 		  <figure>
-			<img src="http://www.gravatar.com/avatar/<?= md5($row->Email); ?>?rating=PG&size=24&size=50&d=identicon" alt="تصویر حامی">
+			<img src="http://www.gravatar.com/avatar/<?= md5($row->Email); ?>?rating=PG&size=24&size=50&d=identicon">
 		  </figure>
 		  <div class="card-body">
 			<h5 class="card-name"><?= ($row->Name) ? $row->Name : "بدون نام" ?></h5>
@@ -69,7 +69,7 @@ $date = new jDateTime(true, true, 'Asia/Tehran');
 			<p class="card-date"><small class="text-muted">تاریخ: <?=   $date->date("l j F Y" , strtotime($row->InputDate));  ?></small> </p>
 			<div class="card-desc">
 			  <small class="text-muted">در حمایت از <?= ($row->Author)? $row->Author : "-"; ?></small>
-			  <img src="http://www.gravatar.com/avatar/<?= md5($AuthorEmail[0]->user_email); ?>?rating=PG&size=24&size=50&d=identicon" alt="تصویر نویسنده">
+			  <img src="http://www.gravatar.com/avatar/<?= md5($AuthorEmail[0]->user_email); ?>?rating=PG&size=24&size=50&d=identicon">
 			</div>
 		  </div>
 		</div>
