@@ -253,3 +253,19 @@ function sendEmailToAuthor($gateway,$reference,$ref_id)
   $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $users_table WHERE display_name='$AuthorName' ");
   sendEmail( $AuthorName, $ref_id , $donate[0]->AmountTomaan , get_the_title($donate[0]->PostID) , $AuthorEmail[0]->user_email);
 }
+
+
+
+function getPageLinks($total,$limit,$page_num)
+{
+  $num_of_pages = ceil( $total / $limit );
+
+  return paginate_links( array(
+	  'base' => add_query_arg( 'page_num', '%#%' ),
+	  'format' => '',
+	  'prev_text' => '&laquo;',
+	  'next_text' => '&raquo;',
+	  'total' => $num_of_pages,
+	  'current' => $page_num
+  ));
+}
