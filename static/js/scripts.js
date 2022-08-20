@@ -17,12 +17,7 @@ jQuery(document).ready(function($) {
     });
 
 
-    // toastAlert.fire({
-    //     icon: 'success',
-    //     title: 'در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید، اینجا کلیک کنید.',
-    // });
-
-
+    // constants
     const sisoogDonate_Amount_Input = document.getElementById('sisoogDonate_Amount_Input');
     const sisoogDonate_Name_Input = document.getElementById('sisoogDonate_Name_Input');
     const sisoogDonate_Amount_Select = document.getElementById('sisoogDonate_Amount_Select');
@@ -85,12 +80,13 @@ jQuery(document).ready(function($) {
             },
             success: function (res , xhr) {
                 const response = JSON.parse(res);
+                const redirectUrl = response.redirect_url;
 
                 if (xhr === 'success' && response.success ){
                     let timerInterval;
                     modalAlert.fire({
                         icon: 'success',
-                        html: '<span>به زودی به درگاه بانک منتقل میشوید، اگر منتقل نشدید <a href="#" class="text-danger">اینجا</a> کلیک کنید</span>',
+                        html: '<span>به زودی به درگاه بانک منتقل میشوید، اگر منتقل نشدید <a href="'+redirectUrl+'" class="text-danger">اینجا</a> کلیک کنید</span>',
                         showConfirmButton: false,
                         timerProgressBar: false,
                         timer: 15000,
@@ -102,28 +98,33 @@ jQuery(document).ready(function($) {
                     });
 
                     setTimeout(function () {
-                        window.location.href = response.redirect_url;
-                    },1000)
-
-
+                        window.location.href = redirectUrl;
+                    },1000);
                 } else if(! response.success && response.status === '400') {
-                    alert(response.error);
+                    toastAlert.fire({
+                        icon: 'error',
+                        title: response.error,
+                    });
                     window.location.replace(post_url);
                 } else {
-                    alert(response.error);
+                    toastAlert.fire({
+                        icon: 'error',
+                        title: response.error,
+                    });
                 }
             },error:function (jqXHR, textStatus, errorThrown) {
                 if(textStatus==='timeout') {
-                    alert('Error');
+                    toastAlert.fire({
+                        icon: 'error',
+                        title: 'ERR_TIMED_OUT!',
+                    });
                 }
-            }
-            ,complete:function () {
+            },complete:function () {
                 sisoogDonate_Submit.html(sisoogDonate_SubmitText).attr('disabled', false);
             },
             timeout:SISOOGDONATEADMINAJAX.REQUEST_TIMEOUT
         });
     });
-
 
     // Separate Digits
     $.fn.digits = function () {
@@ -132,5 +133,4 @@ jQuery(document).ready(function($) {
         })
     };
     $('.digits').digits();
-
 });

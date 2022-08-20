@@ -28,7 +28,7 @@ if ( is_user_logged_in() ) {
 
 
 <div class="container-fluid">
-    <div style="clear:both;width:100%;height: 100vh;">
+    <div>
         <div id="sisoogDonate_MainForm">
             <div class="sisoogDonate_FormTitle">
 			  <?php if (!$author_name):
@@ -42,7 +42,7 @@ if ( is_user_logged_in() ) {
 			  <?php endif; ?>
             </div>
             <div class="w-75 m-auto" id="sisoogDonate_Form">
-                <div class="col-12" style="z-index: 9999">
+                <div class="col-12">
                     <form method="post" id="add_donate_frm" name="add_donate_frm">
                         <div class="sisoogDonate_FormItem required">
                             <label class="sisoogDonate_FormLabel">نام شما :</label>

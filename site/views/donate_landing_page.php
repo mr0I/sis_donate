@@ -9,8 +9,10 @@ $donatesTable = $wpdb->prefix . TABLE_DONATE;
 $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
 
 if (! isset($_GET['Authority']) && ! isset($_GET['clientrefid'])) {
-  wp_die('خطای دسترسی!');
-  return;
+  echo '<div class="alert alert-warning text-center" role="alert">
+      <h6 class="alert-heading">خطای دسترسی!</h6>
+    </div>';
+  exit();
 }
 if (isset($_GET['Authority'])) {
   $gateway_name = 'zarinpal';
@@ -18,7 +20,7 @@ if (isset($_GET['Authority'])) {
   $donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE Authority = '${authority}' LIMIT 1");
   $author_id = $donate[0]->author_id;
   $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
-  $MerchantID = $merchant[0]->merchant_id;
+  $MerchantID = empty($merchant) ? get_option('sisoogDonate_MerchantID') : $merchant[0]->merchant_id;
   $postUrl = get_permalink($donate[0]->PostID);
 } elseif (isset($_GET['clientrefid'])) {
   $gateway_name = 'payping';
@@ -26,7 +28,7 @@ if (isset($_GET['Authority'])) {
   $donate = $wpdb->get_results("SELECT * FROM ${donatesTable} WHERE DonateID = '${clientRefID}' LIMIT 1");
   $author_id = $donate[0]->author_id;
   $merchant = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
-  $MerchantID = $merchant[0]->merchant_id;
+  $MerchantID = empty($merchant) ? get_option('sisoogDonate_MerchantID') : $merchant[0]->merchant_id;
   $postUrl = get_permalink($donate[0]->PostID);
 }
 
@@ -147,6 +149,10 @@ switch ($gateway_name) {
 		  // send email to author
 		  sendEmailToAuthor('zarinpal',$Authority,$result['RefID']);
 		} else {
+//		  EZD_ChangeStatus($Authority, 'ERROR');
+//		  $error .= get_option( 'EZD_IsError') . "<br>\r\n";
+//		  $error .= EZD_GetResaultStatusString($result['Status']) . "<br>\r\n";
+
 		  $homeUrl = home_url();
 		  echo "<script>document.location = '${homeUrl}'</script>";
 		}

@@ -6,7 +6,6 @@ include_once(INC_DIR . 'functions.php');
 global $wpdb;
 $user_id = get_current_user_id();
 $merchantTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-//$merchant = $wpdb->get_results("SELECT * FROM ${merchantTable} WHERE user_id = '${user_id}' LIMIT 1");
 $merchant = getOneMerchant($user_id,$merchantTable);
 
 if (isset($_POST['add_merchantId_submit']) && $_POST['add_merchantId_submit'] === 'ذخیره') {
@@ -47,7 +46,6 @@ if (isset($_POST['add_merchantId_submit']) && $_POST['add_merchantId_submit'] ==
   global $wpdb;
   $user_id = get_current_user_id();
   $merchantTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-//  $merchant = $wpdb->get_results("SELECT * FROM ${merchantTable} WHERE user_id = '${user_id}' LIMIT 1");
   $merchant = getOneMerchant($user_id,$merchantTable);
   ?>
     <table class="form-table" role="presentation">
