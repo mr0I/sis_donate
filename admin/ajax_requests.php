@@ -44,21 +44,21 @@ function addDonateFrm_callback()
   $ts = $reqData['ts'];
   $currentTime = time();
 
-
   if ($currentTime - $ts > 600) {
-	$data=array( 'success' => false ,'error' => 'مدت زمان مجاز برای این فرایند سپری شد!','status' => '400' );
+	$data=array( 'success' => false ,'error' => 'مدت زمان مجاز برای این فرایند به اتمام رسیده است!','status' => '400' );
 	echo json_encode($data);
 	exit();
   }
 
+
   $merchantsTable = $wpdb->prefix . TABLE_MERCHANTS_IDS;
-  $merchants = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${user_id}' LIMIT 1");
+  $merchants = $wpdb->get_results("SELECT * FROM ${merchantsTable} WHERE user_id = '${author_id}' LIMIT 1");
   $MerchantID = '';
   if (sizeof($merchants) !== 0) {
 	$MerchantID =  $merchants[0]->merchant_id ;
 	$gateway_name = $merchants[0]->payment_gateway;
   }
-  if($MerchantID === '') {
+  if ($MerchantID === '') {
 	$MerchantID = get_option('sisoogDonate_MerchantID');
 	$gateway_name = get_option( 'sisoogDonate_MerchantIDType');
   }
@@ -114,9 +114,9 @@ function addDonateFrm_callback()
 		  $err = curl_error($curl);
 		  curl_close($curl);
 		  if ($err) {
-					  $data=array( 'success' => false ,'error' => $err );
-		  echo json_encode($data);
-		  exit();
+			$data=array( 'success' => false ,'error' => $err );
+			echo json_encode($data);
+			exit();
 		  } else {
 			if ($header['http_code'] == 200) {
 			  $response = json_decode($response, true);
@@ -157,6 +157,7 @@ function addDonateFrm_callback()
 		break;
 	  case 'zarinpal':
 		require_once( LIBDIR . '/nusoap.php' );
+
 
 		if ($configs['IS_DEV']) $client = new nusoap_client('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');
 		else $client = new nusoap_client('https://de.zarinpal.com/pg/services/WebGate/wsdl', 'wsdl');

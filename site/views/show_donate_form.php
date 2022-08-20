@@ -90,7 +90,6 @@ if ( is_user_logged_in() ) {
                         <div class="sisoogDonate_FormItem">
                             <button class="sisoogDonate_Submit" name="submit" disabled>
                                 پرداخت
-                                <i class="dn-home mx-1 align-middle"></i>
                             </button>
                         </div>
                     </form>

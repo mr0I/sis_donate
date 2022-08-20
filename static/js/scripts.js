@@ -1,22 +1,44 @@
 jQuery(document).ready(function($) {
 
+    // init toast messages
+    const toastAlert = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+    });
+    const modalAlert = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+    });
+
+
+    // toastAlert.fire({
+    //     icon: 'success',
+    //     title: 'در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید، اینجا کلیک کنید.',
+    // });
+
+
     const sisoogDonate_Amount_Input = document.getElementById('sisoogDonate_Amount_Input');
     const sisoogDonate_Name_Input = document.getElementById('sisoogDonate_Name_Input');
     const sisoogDonate_Amount_Select = document.getElementById('sisoogDonate_Amount_Select');
     const add_donate_frm = document.getElementById('add_donate_frm');
     const sisoogDonate_Submit = $('.sisoogDonate_Submit');
+    const sisoogDonate_SubmitText = $(sisoogDonate_Submit).html();
     sisoogDonate_Amount_Input ? sisoogDonate_Amount_Input.defaultValue='10000' : '';
+
 
     // add donate frm from
     $(add_donate_frm).on('change' , function () {
         const name_val = sisoogDonate_Name_Input.value;
         const select_val = sisoogDonate_Amount_Select.value;
 
-        if (name_val !== '' && name_val !== null && select_val !== '0') {
-            $(sisoogDonate_Submit).attr('disabled' , false);
-        } else {
-            $(sisoogDonate_Submit).attr('disabled' , true);
-        }
+        if (name_val !== '' && name_val !== null && select_val !== '0') $(sisoogDonate_Submit).attr('disabled', false);
+        else $(sisoogDonate_Submit).attr('disabled', true);
     });
 
     $(sisoogDonate_Amount_Select).on('change' , function () {
@@ -59,18 +81,31 @@ jQuery(document).ready(function($) {
             type: 'POST',
             data: data,
             beforeSend: function () {
-                // registerSubmitBtn.html('<i class='fa fa-circle-o-notch fa-spin align-middle mx-1'></i>').attr('disabled', true);
-                // $('#regAlert').fadeOut(500);
+                sisoogDonate_Submit.html('<i class="dn-spinner2 fa-spin align-middle mx-1"></i>').attr('disabled', true);
             },
             success: function (res , xhr) {
                 const response = JSON.parse(res);
+
                 if (xhr === 'success' && response.success ){
-                    alert('در صورتی که به صورت خودکار به درگاه بانک منتقل نشدید');
-                    return;
+                    let timerInterval;
+                    modalAlert.fire({
+                        icon: 'success',
+                        html: '<span>به زودی به درگاه بانک منتقل میشوید، اگر منتقل نشدید <a href="#" class="text-danger">اینجا</a> کلیک کنید</span>',
+                        showConfirmButton: false,
+                        timerProgressBar: false,
+                        timer: 15000,
+                        allowOutsideClick :false,
+                        didOpen: () => {modalAlert.showLoading();},
+                        willClose: () => {clearInterval(timerInterval)}
+                    }).then( () => {
+                        console.log('redirect to gateway...');
+                    });
 
                     setTimeout(function () {
                         window.location.href = response.redirect_url;
                     },1000)
+
+
                 } else if(! response.success && response.status === '400') {
                     alert(response.error);
                     window.location.replace(post_url);
@@ -83,7 +118,7 @@ jQuery(document).ready(function($) {
                 }
             }
             ,complete:function () {
-                //registerSubmitBtn.html(register_frm_submit_btn_txt).attr('disabled', false);
+                sisoogDonate_Submit.html(sisoogDonate_SubmitText).attr('disabled', false);
             },
             timeout:SISOOGDONATEADMINAJAX.REQUEST_TIMEOUT
         });
@@ -97,4 +132,5 @@ jQuery(document).ready(function($) {
         })
     };
     $('.digits').digits();
+
 });

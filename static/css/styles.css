@@ -109,9 +109,12 @@
     border-radius: 0;
     text-align: center !important;
     margin: 13px auto;
+    padding: 6px;
+    border: none;
 }
 .sisoogDonate_Submit:disabled{
     cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .sisoogDonate_FormLabel {

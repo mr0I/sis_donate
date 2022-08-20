@@ -156,6 +156,8 @@ function EZD_GetResaultStatusString($StatusNumber)
 	  return 'رقم باید بالای صد تومان باشد';
 	case -4:
 	  return 'سطح تایید پذیرنده پایین تر از سطح نقره ای است';
+	case -10:
+	  return 'درگاه پرداخت یافت نشد';
 	case -11:
 	  return 'درخواست مورد نظر یافت نشد';
 	case -21:
