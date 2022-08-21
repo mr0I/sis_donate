@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: افزونه حمایت مالی سیسوگ
-Version: 1.0
+Version: 1.1
 Description: افزونه حمایت مالی از وبسایت ها -- برای استفاده تنها کافی است کد زیر را درون بخشی از برگه یا نوشته خود قرار دهید  [SisoogDonate]
 Plugin URI: https://sisoog.com/
 Author: IO
@@ -30,6 +30,7 @@ define ('TABLE_MERCHANTS_IDS'  , 'gateway_merchantsids');
 // enqueue statics
 add_action ('admin_enqueue_scripts', function(){
   wp_enqueue_style('admin-styles', ADMIN_CSS.'admin-styles.css');
+  wp_enqueue_script('admin-scripts', ADMIN_JS.'admin-scripts.js' , array('jquery'));
 });
 add_action( 'wp_enqueue_scripts', function(){
   wp_enqueue_style( 'sisoog_donate_styles', SITE_CSS . 'styles.css', array(), '6.0.2');

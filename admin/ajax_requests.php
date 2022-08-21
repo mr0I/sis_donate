@@ -30,9 +30,8 @@ function addDonateFrm_callback()
   $SendDescription = $Name . ' | ' . $Mobile . ' | ' . $Email . ' | ' . $Description ;
 
 
-  if(is_numeric($Amount) != false) {
-	if($sisoogDonate_Unit === 'ریال') $SendAmount =  $Amount / 10;
-	else $SendAmount =  $Amount;
+  if (is_numeric($Amount) != false) {
+	$SendAmount = ($sisoogDonate_Unit === 'ریال') ?  $Amount / 10 : $Amount;
   } else {
 	$error .= 'مبلغ به درستی وارد نشده است' . "<br>\r\n";
   }

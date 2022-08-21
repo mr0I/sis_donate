@@ -269,3 +269,8 @@ function getPageLinks($total,$limit,$page_num)
 	  'current' => $page_num
   ));
 }
+
+function sanitizeInput($input)
+{
+  return htmlspecialchars( strip_tags( trim( $input ) ), ENT_QUOTES );
+}

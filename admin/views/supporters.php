@@ -11,65 +11,51 @@ $DonateTable = $wpdb->prefix . TABLE_DONATE;
 $all_donates = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable");
 $ok_donates = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable WHERE Status='OK' ");
 
-
 $page_num = isset( $_GET['page_num'] ) ? absint( $_GET['page_num'] ) : 1;
 $limit = $configs['PAGINATE_NUM'] ? $configs['PAGINATE_NUM'] : 10 ;
 $offset = ( $page_num - 1 ) * $limit;
 
-if(isset($_GET['s']) && $_GET['s'] !== ''){
-//if (isset($_REQUEST['searchbyname']) && $_REQUEST['searchbyname'] != '') {
-  $SearchName   = htmlspecialchars( strip_tags( trim( $_GET['s'] ) ), ENT_QUOTES );
-  if (isset($_GET['sort_by'])) {
-	$sort = $_GET['sort_by'];
-	switch ($sort){
-	  case 'completed';
-		$where = "Author LIKE '%$SearchName%' AND Status='OK' ";
-		break;
-	  case 'not_completed';
-		$where = "Author LIKE '%$SearchName%' AND Status<>'OK' ";
-		break;
-	  default:
-		$where = "Author LIKE '%$SearchName%' AND Status='OK' ";
-	}
-  } else {
-	$where = "Author LIKE '%$SearchName%'";
-  }
-
-  $result       = $wpdb->get_results( "SELECT * FROM {$DonateTable}  WHERE {$where} ORDER BY DonateID DESC " );
-  $total        = $wpdb->get_var( "SELECT COUNT(*) FROM {$DonateTable}  WHERE {$where} " );
-  $page_links = getPageLinks($total,$limit,$page_num);
-
-} elseif (isset($_GET['sort_by'])){
+$condition = new stdClass();
+if (isset($_GET['s']) && $_GET['s'] !== '') {
+  $search = sanitizeInput( $_GET['s'] );
+  $condition->like = "Author LIKE '%$search%' ";
+}
+if (isset($_GET['sort_by'])) {
   $sort = $_GET['sort_by'];
   switch ($sort){
 	case 'completed';
-	  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} WHERE Status='OK' ORDER BY DonateID DESC LIMIT $offset,$limit ");
-	  $total = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable WHERE Status='OK' ");
+	  $condition->status = "Status='OK'";
 	  break;
 	case 'not_completed';
-	  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} WHERE Status<>'OK' ORDER BY DonateID DESC LIMIT $offset,$limit ");
-	  $total = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable WHERE Status<>'OK' ");
+	  $condition->status = "Status<>'OK'";
 	  break;
 	default:
-	  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} ORDER BY DonateID DESC LIMIT $offset,$limit ");
-	  $total = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable ");
+	  break;
   }
-  $page_links = getPageLinks($total,$limit,$page_num);
-} else {
-  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} ORDER BY DonateID DESC LIMIT $offset,$limit ");
-  $total = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable ");
-  $page_links = getPageLinks($total,$limit,$page_num);
 }
 
+$where = '';
+$where .= $condition->like;
+$where .= $condition->like && $condition->status ? 'AND ' : '';
+$where .= $condition->status;
 
+if ($where !== ''){
+  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} WHERE {$where} ORDER BY InputDate DESC LIMIT $offset,$limit " );
+  $total = $wpdb->get_var( "SELECT COUNT(*) FROM {$DonateTable} WHERE {$where} " );
+} else {
+  $result = $wpdb->get_results( "SELECT * FROM {$DonateTable} ORDER BY InputDate DESC LIMIT $offset,$limit " );
+  $total = $wpdb->get_var( "SELECT COUNT(*) FROM {$DonateTable} " );
+}
+
+$page_links = getPageLinks($total,$limit,$page_num);
 ?>
 <div class="wrap">
     <div id="icon-edit" class="icon32 icon32-posts-post"><br /></div><h2>حامیان مالی</h2>
-    <form id="posts-filter" action="<?= GetCallBackURL(); ?>" method="post">
+    <form id="search_author_frm" action="<?= GetCallBackURL(); ?>" method="post">
         <p class="search-box">
             <label class="screen-reader-text" for="post-search-input">جست‌وجوی نویسنده:</label>
-            <input type="search" id="post-search-input" name="s" value="<?= $_GET['s'] ?>" />
-            <button type="submit" id="search-submit" class="btn btn-primary mb-2" style="cursor: pointer;">جست‌وجوی نویسنده</button>
+            <input type="search" id="search_author_input" name="s" value="<?= $_GET['s'] ?>" />
+            <button type="submit" id="search_author_submit" class="btn btn-primary mb-2" style="cursor: pointer;">جست‌وجوی نویسنده</button>
         </p>
     </form>
     <input type="hidden" id="default_callback_url" value="<?= GetCallBackURL(); ?>">
