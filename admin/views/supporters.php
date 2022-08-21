@@ -53,13 +53,11 @@ $page_links = getPageLinks($total,$limit,$page_num);
     <div id="icon-edit" class="icon32 icon32-posts-post"><br /></div><h2>حامیان مالی</h2>
     <form id="search_author_frm" action="<?= GetCallBackURL(); ?>" method="post">
         <p class="search-box">
-            <label class="screen-reader-text" for="post-search-input">جست‌وجوی نویسنده:</label>
+            <label class="screen-reader-text" for="search_author_input">جست‌وجوی نویسنده:</label>
             <input type="search" id="search_author_input" name="s" value="<?= $_GET['s'] ?>" />
             <button type="submit" id="search_author_submit" class="btn btn-primary mb-2" style="cursor: pointer;">جست‌وجوی نویسنده</button>
         </p>
     </form>
-    <input type="hidden" id="default_callback_url" value="<?= GetCallBackURL(); ?>">
-
 </div>
 
 <form class="form-inline">
@@ -137,7 +135,7 @@ $page_links = getPageLinks($total,$limit,$page_num);
 </table>
 
 <?php if ( $page_links ): ?>
-    <div class="tablenav"><div class="tablenav-pages" style="margin: 1em 0"><?= $page_links; ?></div></div>
+    <div class="tablenav paginate"><div class="tablenav-pages" style="margin: 1em 0"><?= $page_links; ?></div></div>
 <?php endif; ?>
 
 

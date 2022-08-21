@@ -5,6 +5,7 @@
 require_once LIBDIR . '/jdate/jdatetime.class.php';
 $date = new jDateTime(true, true, 'Asia/Tehran');
 $configs = include_once(ROOT_PATH . 'config.php');
+include_once(INC_DIR . 'functions.php');
 ?>
 
 <?php
@@ -22,19 +23,15 @@ if ( !is_user_logged_in() ) {
   global $wpdb;
   $LIMIT = '';
   $DonateTable = $wpdb->prefix . TABLE_DONATE;
-  $all_donates = $wpdb->get_results( "SELECT * FROM $DonateTable WHERE Author='$Name' ORDER BY DonateID DESC ");
+  $all_donates = $wpdb->get_results( "SELECT * FROM $DonateTable WHERE Author='$Name' ORDER BY InputDate DESC ");
 
+  $page_num = isset( $_GET['page_num'] ) ? absint( $_GET['page_num'] ) : 1;
+  $limit = $configs['PAGINATE_NUM'] ? $configs['PAGINATE_NUM'] : 10 ;
+  $offset = ( $page_num - 1 ) * $limit;
 
-  if(isset($_REQUEST['page_num']))
-  {
-	$page = htmlspecialchars(strip_tags(trim($_REQUEST['page_num'])), ENT_QUOTES);
-	$lim = $configs['PAGINATE_NUM'];
-	$offset = --$page * ($configs['PAGINATE_NUM']);
-	$LIMIT = " LIMIT $lim OFFSET $offset";
-  }
-
-  $user_donates = $wpdb->get_results( "SELECT * FROM $DonateTable WHERE Author='$Name' AND Status='OK' ORDER BY DonateID DESC $LIMIT ");
-  $total_donates = $wpdb->get_results( "SELECT * FROM $DonateTable WHERE Author='$Name' AND Status='OK' ");
+  $user_donates = $wpdb->get_results( "SELECT * FROM $DonateTable WHERE Author='$Name' AND Status='OK' ORDER BY InputDate DESC LIMIT $offset,$limit ");
+  $total_donates = $wpdb->get_var( "SELECT COUNT(*) FROM $DonateTable WHERE Author='$Name' AND Status='OK' ");
+  $page_links = getPageLinks($total_donates,$limit,$page_num);
   ?>
 
   <?php
@@ -79,35 +76,9 @@ if ( !is_user_logged_in() ) {
           </div>
 
           <!--   Pagination   -->
-          <div class="actions paginate_btns">
-			<?php
-			$total = count($total_donates);
-
-			$PageNumInt = 1;
-			if($total > 0)
-			{
-			  $PagesNum = $total / $configs['PAGINATE_NUM'];
-			  $PageNumInt = intval($PagesNum);
-			  if($PageNumInt < $PagesNum)
-				$PageNumInt++;
-			}
-
-			$currentPage = 1;
-			if(isset($_GET['page_num'])){
-			  $currentPage = htmlspecialchars(strip_tags(trim($_GET['page_num'])), ENT_QUOTES);
-			}
-			?>
-			<?php
-			if (!isset($_GET['sort_by']))  $_GET['sort_by'] = 'all';
-			for($i = 1 ; $i <= $PageNumInt; $i++)
-			{
-			  if($i == $currentPage)
-				echo '<a href="?page=authorslist&page_num='. $i .' &sort_by='.$_GET['sort_by'].' "  class="first-page active">'. $i .'</a>';
-			  else
-				echo '<a href="?page=authorslist&page_num='. $i .' &sort_by='.$_GET['sort_by'].' "  class="first-page">'. $i .'</a>';
-			}
-			?>
-          </div>
+		<?php if ( $page_links ): ?>
+            <div class="tablenav paginate"><div class="tablenav-pages" style="margin: 1em 0"><?= $page_links; ?></div></div>
+		<?php endif; ?>
           <br class="clear" />
           <!--   Pagination   -->
       </div>

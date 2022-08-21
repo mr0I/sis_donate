@@ -1,9 +1,27 @@
-.tablenav a{
-    padding: 3px 13px;
-    background: #757575;
-    margin: 3px;
-    color: #eee;
-    text-decoration: none;
+/*.tablenav a{*/
+    /*padding: 3px 13px;*/
+    /*background: #757575;*/
+    /*margin: 3px;*/
+    /*color: #eee;*/
+    /*text-decoration: none;*/
+/*}*/
+
+.tablenav.paginate{
+    text-align: left;
+    padding: 0 13px;
+}
+.tablenav.paginate a.page-numbers ,  .tablenav.paginate span.current{
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+.tablenav.paginate a.page-numbers {
+    background-color: #841d7a;
+    color: #fff !important;
+    border: 1px solid transparent;
+}
+.tablenav.paginate span.current{
+    color: #841d7a;
+    border: 1px solid #841d7a;
 }
 
 #wpfooter {
