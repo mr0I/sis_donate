@@ -216,7 +216,7 @@ input[name="input_amount"]{
 
 .donate_title {
     text-align: center;
-    margin: 24px auto;
+    margin-bottom: 24px;
 }
 .donate_title p{
     text-align: center !important;

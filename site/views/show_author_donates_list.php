@@ -63,7 +63,7 @@ if ( !is_user_logged_in() ) {
                                   <td><?= $counter++; ?></td>
                                   <td class="digits"><?= $row->AmountTomaan . ' ' . get_option('sisoogDonate_Unit'); ?></td>
                                   <td><?= get_the_title($row->PostID) ?></td>
-                                  <td><?= intval($row->Authority); ?></td>
+                                  <td><?= $row->Authority; ?></td>
                                   <td><?= $date->date("l j F Y - H:i" , strtotime($row->InputDate)); ?></td>
                               </tr>
 							<?php

@@ -118,7 +118,7 @@ $page_links = getPageLinks($total,$limit,$page_num);
                 <td class="categories column-categories"><?php echo $row->Mobile; ?></td>
                 <td class="tags column-tags"><?php echo $row->Email; ?></td>
                 <td class="tags column-tags"><?php echo $row->Description; ?></td>
-                <td class="tags column-tags"><?= intval($row->Authority); ?></td>
+                <td class="tags column-tags"><?= $row->Authority; ?></td>
                 <td class="author column-author" style="display: flex; justify-content: flex-start; align-items: center;">
 				  <?php echo $row->Author; ?>
 				  <?php $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$row->Author' "); ?>
