@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/views/supporters.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/views/supporters.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site/views/show_author_donates_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/site/views/show_author_donates_list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/styles.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,11 +41,15 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin/views/supporters.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="120" column="64" lean-forward="true" selection-start-line="120" selection-start-column="64" selection-end-line="120" selection-end-column="64" />
+            <state relative-caret-position="290">
+              <caret line="108" column="48" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="48" />
+              <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#figure#0;n#td#7;n#tr#1;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,17 +57,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+            <state relative-caret-position="616">
+              <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site/views/show_author_donates_list.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+            <state relative-caret-position="638">
+              <caret line="65" column="93" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="93" />
               <folding>
                 <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -192,8 +195,8 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/admin/css/admin-styles.css" />
         <option value="$PROJECT_DIR$/static/css/styles.css" />
-        <option value="$PROJECT_DIR$/admin/views/supporters.php" />
         <option value="$PROJECT_DIR$/site/views/show_author_donates_list.php" />
+        <option value="$PROJECT_DIR$/admin/views/supporters.php" />
       </list>
     </option>
   </component>
@@ -209,7 +212,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,54 +219,11 @@
               <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
               <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="inc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="site" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="site" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sisoog_donate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sisoog_donate" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -312,17 +271,19 @@
       <workItem from="1661146314571" duration="11000" />
       <workItem from="1661151177184" duration="2711000" />
       <workItem from="1661160502166" duration="2640000" />
-      <workItem from="1661172113731" duration="149000" />
+      <workItem from="1661172113731" duration="230000" />
+      <workItem from="1661227985268" duration="1165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132573000" />
+    <option name="totallyTimeSpent" value="133819000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17643923" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14925373" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -334,7 +295,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="9" visible="true" weight="0.30211818" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.30211818" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.9665552" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32998884" />
       <window_info anchor="bottom" id="Messages" order="12" />
@@ -545,6 +506,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin/css/admin-styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -566,26 +534,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin/views/supporters.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="120" column="64" lean-forward="true" selection-start-line="120" selection-start-column="64" selection-end-line="120" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/site/views/show_donates_list.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="47" lean-forward="true" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/site/views/show_author_donates_list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+        <state relative-caret-position="638">
+          <caret line="65" column="93" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="93" />
           <folding>
             <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/views/supporters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="108" column="48" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="48" />
+          <caret line="109" column="48" selection-start-line="109" selection-start-column="48" selection-end-line="109" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#figure#0;n#td#7;n#tr#1;n#tbody#0;n#table#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

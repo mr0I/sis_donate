@@ -86,23 +86,10 @@ $page_links = getPageLinks($total,$limit,$page_num);
         <th scope='col' id='comments' class='manage-column column-tags'  style="">توضیحات</th>
         <th scope='col' id='followup' class='manage-column column-tags'  style="">شماره پیگیری</th>
         <th scope='col' id='author' class='manage-column column-tags'  style="">نویسنده</th>
+        <th scope='col' id='author_avatar' class='manage-column column-tags'  style=""></th>
         <th scope='col' id='date' class='manage-column column-date'  style=""><span>تاریخ</span><span class="sorting-indicator"></span></th>
     </tr>
     </thead>
-    <tfoot>
-    <tr>
-        <th scope='col' id='title' class='manage-column column-title'  style="">
-            <span>نام و نام خانوادگی</span><span class="sorting-indicator"></span>
-        </th>
-        <th scope='col' id='author' class='manage-column column-author'  style="">مبلغ (تومان)</th>
-        <th scope='col' id='categories' class='manage-column column-categories'  style="">موبایل</th>
-        <th scope='col' id='tags' class='manage-column column-tags'  style="">ایمیل</th>
-        <th scope='col' id='comments' class='manage-column column-tags'  style="">توضیحات</th>
-        <th scope='col' id='followup' class='manage-column column-tags'  style="">شماره پیگیری</th>
-        <th scope='col' id='author' class='manage-column column-tags'  style="">نویسنده</th>
-        <th scope='col' id='date' class='manage-column column-date'  style=""><span>تاریخ</span><span class="sorting-indicator"></span></th>
-    </tr>
-    </tfoot>
 
     <tbody id="the-list">
 	<?php if (empty($result)): ?>
@@ -118,9 +105,9 @@ $page_links = getPageLinks($total,$limit,$page_num);
                 <td class="categories column-categories"><?php echo $row->Mobile; ?></td>
                 <td class="tags column-tags"><?php echo $row->Email; ?></td>
                 <td class="tags column-tags"><?php echo $row->Description; ?></td>
-                <td class="tags column-tags"><?= $row->Authority; ?></td>
-                <td class="author column-author" style="display: flex; justify-content: flex-start; align-items: center;">
-				  <?php echo $row->Author; ?>
+                <td class="tags column-tags"><?= substr($row->Authority,strlen($row->Authority)-10); ?></td>
+                <td class="author column-author"><?php echo $row->Author; ?></td>
+                <td class="author column-author">
 				  <?php $AuthorEmail = $wpdb->get_results( "SELECT user_email FROM $wpdb->users WHERE display_name='$row->Author' "); ?>
                     <figure>
                         <img src="http://www.gravatar.com/avatar/<?= md5($AuthorEmail[0]->user_email); ?>?rating=PG&size=24&size=50&d=identicon"
