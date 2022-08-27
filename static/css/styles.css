@@ -293,13 +293,16 @@ input[name="input_amount"]{
     font-size: 150%;
     margin: 15px auto;
 }
-
 /* end ShowDonatesListPage */
 
 
+/* start responsive */
 @media screen and (max-width: 768px){
     #sisoogDonate_Form{
         width: 100%;
         flex-direction: column-reverse;
+        padding: 0;
+        box-shadow: none;
     }
 }
+/* end responsive */

@@ -41,7 +41,7 @@ if ( is_user_logged_in() ) {
                   <h4>شما در حال حمایت از <span><?= $author_name; ?></span>  هستید. </h4>
 			  <?php endif; ?>
             </div>
-            <div class="w-75 m-auto" id="sisoogDonate_Form">
+            <div class="m-auto" id="sisoogDonate_Form">
                 <div class="col-12">
                     <form method="post" id="add_donate_frm" name="add_donate_frm">
                         <div class="sisoogDonate_FormItem required">

@@ -7,16 +7,16 @@ if (isset($_GET['sort_by'])){
   $sort = htmlspecialchars(strip_tags(trim($_GET['sort_by'])), ENT_QUOTES);
   switch ($sort){
 	case 'max_amount':
-	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC ");
+	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC, InputDate DESC ");
 	  break;
 	case 'last_amount':
-	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY InputDate DESC ");
+	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY InputDate DESC, InputDate DESC ");
 	  break;
 	default:
-	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC ");
+	  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC, InputDate DESC ");
   }
 }else{
-  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC ");
+  $all_donates = $wpdb->get_results( "SELECT * FROM $donateTable WHERE Status='OK' ORDER BY AmountTomaan DESC, InputDate DESC ");
 }
 
 // Convert Date To Shamsi
@@ -26,7 +26,7 @@ $date = new jDateTime(true, true, 'Asia/Tehran');
 
 <div class="container-fluid donateListContainer">
     <div class="donate_title">
-        <h3>از  نویسندگان سیسوگ حمایت کنید</h3>
+        <h3>از نویسندگان سیسوگ حمایت کنید</h3>
         <p>حمایت شما باعث دلگرمی ما در جهت تولید محتوای بروز و مفید خواهد بود</p>
 	  <?php
 	  if (sizeof($all_donates) !== 0){
