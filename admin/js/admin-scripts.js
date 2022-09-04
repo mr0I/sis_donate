@@ -4,7 +4,9 @@ jQuery(document).ready(function ($) {
     const searchAuthorForm = document.getElementById('search_author_frm');
     const searchAuthorInput = document.getElementById('search_author_input');
     const formAction = $(searchAuthorForm).attr('action');
-    let callbackUrl = formAction.split('&')[0];
+    let callbackUrl;
+    if (formAction) callbackUrl = formAction.split('&')[0];
+
 
     const url = new URL(window.location.href);
     const sortBy = url.searchParams.get('sort_by') || '';
