@@ -17,6 +17,9 @@ $usersTable = $wpdb->prefix . 'users';
 $author = $wpdb->get_results( "SELECT * FROM $usersTable WHERE ID='$author_id' AND display_name='$display_name' ");
 $author_name = (sizeof($author) !== 0) ? get_the_author_meta( 'display_name', $author_id ) : '';
 
+$name = '';
+$email = '';
+$phone = '';
 $current_user = new stdClass();
 if ( is_user_logged_in() ) {
   $current_user = wp_get_current_user();
@@ -60,7 +63,7 @@ if ( is_user_logged_in() ) {
                         </div>
                         <div class="sisoogDonate_FormItem">
                             <label class="sisoogDonate_FormLabel">توضیحات :</label>
-                            <div class="sisoogDonate_ItemInput"><input type="text" name="desc" value="<?= $description ?>" /></div>
+                            <div class="sisoogDonate_ItemInput"><input type="text" name="desc" /></div>
                         </div>
                         <div class="sisoogDonate_FormItem required">
                             <label class="sisoogDonate_FormLabel">مبلغ</label>
@@ -74,9 +77,10 @@ if ( is_user_logged_in() ) {
                                     <option value="other_prices">سایر مبالغ</option>
                                 </select>
                                 <input style="width:60%" type="text" name="input_amount" id="sisoogDonate_Amount_Input"
-                                       placeholder="مبلغ دلخواهتان را وارد کنید..." value="<?= $amount ?>"
+                                       placeholder="مبلغ دلخواهتان را وارد کنید..."
                                        onkeyup="this.value = this.value.replace(/[^\d]+/g, '');" />
-                                <span style="margin-right:10px;display: none;"><?= $sisoogDonate_Unit ?></span>
+                                <span style="margin-right:10px;display: none;"></span>
+<!--                                <span style="margin-right:10px;display: none;">--><?//= $sisoogDonate_Unit ?><!--</span>-->
                             </div>
                         </div>
 

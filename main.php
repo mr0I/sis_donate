@@ -30,7 +30,7 @@ define ('TABLE_MERCHANTS_IDS'  , 'gateway_merchantsids');
 // enqueue statics
 add_action ('admin_enqueue_scripts', function(){
   wp_enqueue_style('admin-styles', ADMIN_CSS.'admin-styles.css');
-  wp_enqueue_script('admin-scripts', ADMIN_JS.'admin-scripts.js' , array('jquery'));
+  wp_enqueue_script('admin-scripts', ADMIN_JS.'admin-scripts.js' , array('jquery'), '2.1.0');
 });
 add_action( 'wp_enqueue_scripts', function(){
   wp_enqueue_style( 'sisoog_donate_styles', SITE_CSS . 'styles.css', array(), '6.0.3');
