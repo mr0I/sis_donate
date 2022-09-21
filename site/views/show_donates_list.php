@@ -29,11 +29,11 @@ $date = new jDateTime(true, true, 'Asia/Tehran');
         <h3>از نویسندگان سیسوگ حمایت کنید</h3>
         <p>حمایت شما باعث دلگرمی ما در جهت تولید محتوای بروز و مفید خواهد بود</p>
 	  <?php
-	  if (sizeof($all_donates) !== 0){
+	  if (sizeof($all_donates) > 0){
 		?>
           <div class="btn-group">
-              <a class="<?php if ($_GET['sort_by'] == 'max_amount' || $_GET['sort_by'] == '') echo 'active'; ?>" href="?sort_by=max_amount" style="border-radius: 0 3px 3px 0;">بیشترین مبلغ</a>
-              <a class="<?php if ($_GET['sort_by'] == 'last_amount') echo 'active'; ?>" href="?sort_by=last_amount" style="border-radius: 3px 0 0 3px;">آخرین پرداخت</a>
+              <a class="<?php if ($sort == 'max_amount' || $sort == '') echo 'active'; ?>" href="?sort_by=max_amount" style="border-radius: 0 3px 3px 0;">بیشترین مبلغ</a>
+              <a class="<?php if ($sort == 'last_amount') echo 'active'; ?>" href="?sort_by=last_amount" style="border-radius: 3px 0 0 3px;">آخرین پرداخت</a>
           </div>
 		<?php
 	  }

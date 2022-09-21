@@ -25,6 +25,7 @@ define('LIBDIR', plugin_dir_path(__FILE__) . 'lib/');
 define ('TABLE_USERS'  , 'users');
 define ('TABLE_DONATE'  , 'sisoog_donate');
 define ('TABLE_MERCHANTS_IDS'  , 'gateway_merchantsids');
+define('AES_METHOD', 'aes-256-cbc');
 
 
 // enqueue statics
